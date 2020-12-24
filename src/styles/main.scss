@@ -368,9 +368,13 @@ body {
 
 .well {
   max-width: 600px;
+  padding: 1rem 1rem 0;
 }
 
 @media screen and (max-width: 500px) {
+  .well {
+    padding: 1rem 1rem 0 !important;
+  }
   body {
     #content {
       #story {
@@ -441,7 +445,6 @@ body {
                 background-color: transparent;
                 bottom: 0;
                 right: 0;
-                padding: 1rem;
                 h1 {
                   color: $white;
                   font-size: 2rem;

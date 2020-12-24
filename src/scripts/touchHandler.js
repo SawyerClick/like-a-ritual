@@ -40,7 +40,7 @@ let currentId = 'intro'
 let currentCard = 0
 const currentSound = null
 const currentSoundTrack = 'null'
-const lastAudio = 'null'
+let lastAudio = 'null'
 const noiseArray = []
 
 currentId = cardNames[currentCard].card
@@ -60,7 +60,7 @@ window.onblur = function () {
 }
 
 function playSound() {
-  console.log('playing sound')
+  console.log('playing sound', cardNames[currentCard].audio)
   const newSound = new Howl({
     src: [cardNames[currentCard].audio],
     volume: 0.8,
@@ -69,7 +69,6 @@ function playSound() {
   stopLastAudio()
   newSound.play()
   noiseArray.push(newSound)
-  console.log(noiseArray)
 }
 
 function updateCard(direction) {
@@ -101,15 +100,15 @@ function updateCard(direction) {
 
   if (currentCard !== 0) {
     if (
-      (noiseArray.length > 0 && cardNames[currentCard].audio == 'none') ||
-      cardNames[currentCard - 1].audio != cardNames[currentCard].audio
+      cardNames[currentCard].audio == 'none' ||
+      lastAudio != cardNames[currentCard].audio
     ) {
       stopLastAudio()
     }
 
     if (
       cardNames[currentCard].audio != 'none' &&
-      cardNames[currentCard - 1].audio != cardNames[currentCard].audio
+      lastAudio != cardNames[currentCard].audio
     ) {
       playSound()
     }
@@ -132,10 +131,16 @@ function updateCard(direction) {
       }
     })
 
-  // d3.select
-  console.log('\ntouched:', direction)
-  console.log('CURRENTLY AT CARD::', currentCard)
-  console.log('CURRENTLY AT ID::', currentId)
+  console.log(
+    'touched:',
+    direction,
+    '\nCURRENTLY AT CARD::',
+    currentCard,
+    '\nCURRENTLY AT ID::',
+    currentId
+  )
+
+  lastAudio = cardNames[currentCard].audio
 }
 
 updateCard('none')
