@@ -1,0 +1,454 @@
+/* #C7493A red
+#EDF5E1 dark red
+#5CDB95 green
+#907163 dark tan
+#379683 tan */
+
+$green: #027f44;
+$navy: rgba(25, 72, 100, 1);
+$yellow: #ded211;
+$white: #f7f7f7;
+$black: #333;
+$outline: 2px;
+$header: 'Kanit', sans-serif;
+$body: 'Inconsolata', monospace;
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  color: #f7f7f7;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header;
+  text-align: center;
+}
+p {
+  font-family: $body;
+  font-size: 16px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+body {
+  -webkit-font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
+  font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: #282828;
+  color: #f7f7f7;
+  font-weight: 500;
+  font-family: 'Tiempos Text Web', Georgia, Times, serif;
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  #content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    #touch {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: all;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      .left {
+        width: 32%;
+        height: 100%;
+      }
+      .right {
+        width: 68%;
+        height: 100%;
+      }
+    }
+    #story {
+      height: 100vh;
+      width: 100vw;
+      pointer-events: none;
+      .card {
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 2;
+        box-sizing: border-box;
+        &.visible {
+          visibility: visible;
+          opacity: 1;
+        }
+        .content {
+          display: block;
+        }
+      }
+      #card-1 {
+        .background {
+          background: url('https://24.media.tumblr.com/4093d3a095a528254a2bb6d025562ecf/tumblr_mhczzi31go1qcc2wao1_500.gif')
+            repeat fixed center;
+          height: 100vh;
+          width: 100vw;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.2;
+          overflow: hidden;
+          z-index: -1;
+        }
+        .headline {
+          display: block;
+          text-align: center;
+          text-transform: uppercase;
+          z-index: 1;
+          h2 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.5rem;
+            max-width: 50%;
+            margin: 0 auto;
+            max-width: 450px;
+            font-family: $body;
+          }
+          h1 {
+            position: relative;
+            display: inline-block;
+            font-size: 20vw;
+            letter-spacing: 0.2rem;
+            color: #e5ecea;
+            -webkit-background-clip: text;
+            text-shadow: -1px -1px 0 $green, 1px -1px 0 $green,
+              -1px 1px 0 $green, 1px 1px 0 $green, 1px 0px 0px $navy,
+              0px 1px 0px $navy, 2px 1px 0px $navy, 1px 2px 0px $navy,
+              3px 2px 0px $navy, 2px 3px 0px $navy, 4px 3px 0px $navy,
+              3px 4px 0px $navy, 5px 4px 0px $navy, 3px 5px 0px $green,
+              6px 5px 0px $green, -1px 2px 0 $black, 0 3px 0 $green,
+              1px 4px 0 $green, 2px 5px 0px $green, 2px -1px 0 $green,
+              3px 0 0 $green, 4px 1px 0 $green, 5px 2px 0px $green,
+              6px 3px 0 $green, 7px 4px 0 $green, 10px 10px 4px $green;
+            &:first-of-type {
+              margin-top: -8vw;
+            }
+            &:last-of-type {
+              margin-top: -12vw;
+              margin-bottom: -4vw;
+            }
+          }
+          h2.byline {
+            margin-top: 1rem;
+            font-weight: 400;
+            font-size: 1.25rem;
+            letter-spacing: 0.3rem;
+          }
+          h2.button {
+            font-family: $body;
+            background-color: $navy;
+            padding: 15px;
+            border-radius: 10px;
+            letter-spacing: 0.2rem;
+            // display: inline-block;
+            margin: 3rem auto 0;
+          }
+        }
+        #explainer {
+          width: 100vw;
+          height: 100vh;
+          position: absolute;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          opacity: 0;
+          box-sizing: border-box;
+          // background: $white;
+          p {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.15rem;
+            color: $white;
+          }
+          .audioWarning {
+            position: absolute;
+            bottom: 6rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: $white;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: $black;
+            color: $white;
+            border-radius: 1rem;
+            padding: 2rem 1rem;
+          }
+          .left {
+            width: 50%;
+            bottom: 2rem;
+            position: relative;
+            text-align: left;
+            p {
+              left: 2rem;
+            }
+          }
+          .right {
+            width: 50%;
+            bottom: 2rem;
+            position: relative;
+            text-align: right;
+            p {
+              right: 2rem;
+            }
+          }
+        }
+      }
+      #card-2 {
+        background-color: $navy;
+        color: $black;
+        text-align: left;
+        .background-image {
+          position: absolute;
+          right: 6rem;
+          top: 3rem;
+          z-index: -1;
+        }
+        .introText {
+          background-color: white;
+          padding: 2rem 4rem;
+          position: absolute;
+          bottom: 4rem;
+          left: 10rem;
+          width: auto;
+          h1 {
+            font-size: 3rem;
+            text-align: left;
+            color: $black;
+          }
+          p {
+            margin: 0.75rem 0;
+            color: $black;
+          }
+          p:first-of-type {
+            margin-top: 0;
+          }
+        }
+      }
+      #card-3 {
+        background-color: $yellow;
+        color: $black;
+        h1 {
+          color: $black;
+        }
+      }
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    }
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.well {
+  max-width: 600px;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    #content {
+      #story {
+        #card-1 {
+          opacity: 1;
+          .headline {
+            h2 {
+              font-size: 1.75rem;
+              letter-spacing: normal;
+              max-width: 275px;
+            }
+            h1 {
+              font-size: 5rem;
+            }
+            h2.byline {
+              font-size: 1.3rem;
+              letter-spacing: normal;
+            }
+            h2.button {
+              font-size: 1.5rem;
+              padding: 20px;
+              max-width: 300px;
+              line-height: 1.5;
+              width: 100vw;
+            }
+          }
+          #explainer {
+            display: block;
+            .audioWarning {
+              bottom: 12rem;
+            }
+            .left,
+            .right {
+              width: 100vw !important;
+              position: absolute;
+              height: 100%;
+              p {
+                width: 100%;
+                hyphens: auto;
+                padding: 0 1rem;
+                left: 0;
+                right: 0;
+                font-size: 1rem;
+              }
+            }
+            .left {
+              bottom: 4rem;
+            }
+          }
+        }
+        #card-2 {
+          .content {
+            height: 100vh;
+            .part:first-of-type {
+              // height: 100vh;
+              .background-image {
+                max-width: 100%;
+                position: relative;
+                top: 0;
+                right: 0;
+                img {
+                  max-width: 100%;
+                }
+              }
+              .introText {
+                position: static;
+                background-color: transparent;
+                bottom: 0;
+                right: 0;
+                padding: 1rem;
+                h1 {
+                  color: $white;
+                  font-size: 2rem;
+                }
+                p {
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

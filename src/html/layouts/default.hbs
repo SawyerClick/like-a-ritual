@@ -1,22 +1,17 @@
 <!doctype html>
 <html lang='en'>
 <head>
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/scrollytelling.css">
-  <title>Is Punk Dead? | Sawyer Click</title>
+  <link rel="stylesheet" href="styles/main.scss">
+  <title>{{ meta.title }} | Sawyer Click</title>
   {{> base/meta}}
   {{> base/fonts }}
   {{> base/analytics }}
 </head>
 <body>
-  {{> base/headline }}
-
+  {{!-- {{> base/headline }} --}}
   <main id='content'>
-
     {{{body}}}
-
-    {{> base/footer }}
   </main>
-
+  {{> base/scripts }}
 </body>
 </html>
