@@ -223,6 +223,8 @@ body {
             font-size: 20vw;
             letter-spacing: 0.2rem;
             color: #e5ecea;
+            line-height: 1.4;
+            padding-bottom: 0;
             -webkit-background-clip: text;
             text-shadow: -1px -1px 0 $green, 1px -1px 0 $green,
               -1px 1px 0 $green, 1px 1px 0 $green, 1px 0px 0px $navy,
@@ -382,6 +384,7 @@ body {
             }
             h1 {
               font-size: 5rem;
+              line-height: 1.6;
             }
             h2.byline {
               font-size: 1.3rem;
