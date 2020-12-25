@@ -125,7 +125,7 @@ function updateCard(direction) {
       if (i == idCount) {
         return 1
       } else if (i < idCount) {
-        return 0.2
+        return 0.3
       } else {
         return 0
       }
@@ -150,3 +150,17 @@ d3.select('#touch')
   .on('click', function () {
     updateCard(d3.select(this).attr('class'))
   })
+
+document.onkeydown = checkKey
+
+function checkKey(e) {
+  console.log(e)
+  e = e || window.event
+  if (e.key === 'ArrowLeft') {
+    updateCard('left')
+    console.log('arrow left')
+  } else if (e.key == 'ArrowRight') {
+    console.log('arrow right')
+    updateCard('right')
+  }
+}

@@ -107,7 +107,7 @@ video {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   hyphens: auto;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 h1,
@@ -141,12 +141,11 @@ body {
   font-weight: 500;
   font-family: 'Tiempos Text Web', Georgia, Times, serif;
   font-size: 16px;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   #content {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     #touch {
       height: 100%;
       width: 100%;
@@ -158,11 +157,15 @@ body {
       display: -ms-flexbox;
       display: flex;
       .left {
-        width: 32%;
+        // position: absolute;
+        // left: 0;
+        // width: 15%;
         height: 100%;
       }
       .right {
-        width: 68%;
+        // position: absolute;
+        // right: 0;
+        // width: 15%;
         height: 100%;
       }
     }
@@ -173,7 +176,9 @@ body {
       .card {
         height: 100%;
         width: 100%;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         visibility: hidden;
         pointer-events: none;
@@ -188,6 +193,7 @@ body {
         }
       }
       #card-1 {
+        height: 100%;
         .background {
           background: url('https://24.media.tumblr.com/4093d3a095a528254a2bb6d025562ecf/tumblr_mhczzi31go1qcc2wao1_500.gif')
             repeat fixed center;
@@ -203,10 +209,11 @@ body {
           z-index: -1;
         }
         .headline {
-          display: block;
+          // display: block;
           text-align: center;
           text-transform: uppercase;
           z-index: 1;
+          height: 100%;
           h2 {
             font-size: 1.75rem;
             font-weight: 500;
@@ -254,8 +261,9 @@ body {
             background-color: $navy;
             padding: 15px;
             border-radius: 10px;
+            -webkit-box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
             letter-spacing: 0.2rem;
-            // display: inline-block;
             margin: 3rem auto 0;
           }
         }
@@ -315,30 +323,45 @@ body {
         background-color: $navy;
         color: $black;
         text-align: left;
-        .background-image {
-          position: absolute;
-          right: 6rem;
-          top: 3rem;
-          z-index: -1;
-        }
-        .introText {
-          background-color: white;
-          padding: 2rem 4rem;
-          position: absolute;
-          bottom: 4rem;
-          left: 10rem;
-          width: auto;
-          h1 {
-            font-size: 3rem;
-            text-align: left;
-            color: $black;
+        .content {
+          padding-top: 10rem;
+          .background-image {
+            position: absolute;
+            right: 10vw;
+            top: 3rem;
+            z-index: -1;
           }
-          p {
-            margin: 0.75rem 0;
-            color: $black;
+          .introText {
+            background-color: white;
+            padding: 2rem 4rem;
+            margin-top: 4rem;
+            // position: absolute;
+            // bottom: 4rem;
+            // left: 10rem;
+            width: auto;
+            h1 {
+              font-size: 3rem;
+              text-align: left;
+              color: $black;
+            }
+            p {
+              margin: 0.75rem 0;
+              color: $black;
+            }
+            p:first-of-type {
+              margin-top: 0;
+            }
           }
-          p:first-of-type {
-            margin-top: 0;
+          .secondText {
+            padding: 3rem 4rem;
+            margin-top: -1rem;
+            background: $white;
+            position: absolute;
+            z-index: 1;
+            p {
+              color: $black;
+              font-size: 1.25rem;
+            }
           }
         }
       }
@@ -371,9 +394,10 @@ body {
   padding: 1rem 1rem 0;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
   .well {
-    padding: 1rem 1rem 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
   body {
     #content {
@@ -395,8 +419,8 @@ body {
               letter-spacing: normal;
             }
             h2.button {
-              font-size: 1.5rem;
-              padding: 20px;
+              font-size: 1.15rem;
+              padding: 10px;
               max-width: 300px;
               line-height: 1.5;
               width: 100vw;
@@ -406,6 +430,7 @@ body {
             display: block;
             .audioWarning {
               bottom: 12rem;
+              border-radius: 0;
             }
             .left,
             .right {
@@ -429,6 +454,7 @@ body {
         #card-2 {
           .content {
             height: 100vh;
+            padding-top: 0;
             .part:first-of-type {
               // height: 100vh;
               .background-image {
@@ -443,8 +469,7 @@ body {
               .introText {
                 position: static;
                 background-color: transparent;
-                bottom: 0;
-                right: 0;
+                margin-top: 0;
                 h1 {
                   color: $white;
                   font-size: 2rem;
@@ -452,6 +477,14 @@ body {
                 p {
                   color: $white;
                 }
+              }
+            }
+            .secondText {
+              background-color: transparent;
+              padding: 1rem 1rem 0;
+              p {
+                color: $white;
+                font-size: 1.25rem;
               }
             }
           }
