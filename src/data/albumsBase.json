@@ -1,0 +1,310 @@
+[
+	{
+		"album_group": "album",
+		"album_type": "album",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/1xRsnyytuSTf1rIxWV8m2r"
+		},
+		"href": "https://api.spotify.com/v1/albums/1xRsnyytuSTf1rIxWV8m2r",
+		"id": "1xRsnyytuSTf1rIxWV8m2r",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b273eeb5fd5ce92d8a0262921a7a",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e02eeb5fd5ce92d8a0262921a7a",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d00004851eeb5fd5ce92d8a0262921a7a",
+				"width": 64
+			}
+		],
+		"name": "Hyperview",
+		"release_date": "2015-02-03",
+		"release_date_precision": "day",
+		"total_tracks": 10,
+		"type": "album",
+		"uri": "spotify:album:1xRsnyytuSTf1rIxWV8m2r"
+	},
+	{
+		"album_group": "album",
+		"album_type": "album",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/5PuH5qKuCYTJWsareezH4X"
+		},
+		"href": "https://api.spotify.com/v1/albums/5PuH5qKuCYTJWsareezH4X",
+		"id": "5PuH5qKuCYTJWsareezH4X",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b2735d499539783a547df8ca22ea",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e025d499539783a547df8ca22ea",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d000048515d499539783a547df8ca22ea",
+				"width": 64
+			}
+		],
+		"name": "Floral Green",
+		"release_date": "2012-09-18",
+		"release_date_precision": "day",
+		"total_tracks": 11,
+		"type": "album",
+		"uri": "spotify:album:5PuH5qKuCYTJWsareezH4X"
+	},
+	{
+		"album_group": "album",
+		"album_type": "album",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/1sppQ1PvKakkMZVS7PNNSy"
+		},
+		"href": "https://api.spotify.com/v1/albums/1sppQ1PvKakkMZVS7PNNSy",
+		"id": "1sppQ1PvKakkMZVS7PNNSy",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b273a6921f58ac98b07d5e4f1fe6",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e02a6921f58ac98b07d5e4f1fe6",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d00004851a6921f58ac98b07d5e4f1fe6",
+				"width": 64
+			}
+		],
+		"name": "Shed",
+		"release_date": "2011-05-03",
+		"release_date_precision": "day",
+		"total_tracks": 12,
+		"type": "album",
+		"uri": "spotify:album:1sppQ1PvKakkMZVS7PNNSy"
+	},
+	{
+		"album_group": "album",
+		"album_type": "album",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/1GU705IudYAvVOmgESEUbs"
+		},
+		"href": "https://api.spotify.com/v1/albums/1GU705IudYAvVOmgESEUbs",
+		"id": "1GU705IudYAvVOmgESEUbs",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b273c567a7038e1e7fe16b424b9b",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e02c567a7038e1e7fe16b424b9b",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d00004851c567a7038e1e7fe16b424b9b",
+				"width": 64
+			}
+		],
+		"name": "The Last Thing You Forget",
+		"release_date": "2009-07-21",
+		"release_date_precision": "day",
+		"total_tracks": 12,
+		"type": "album",
+		"uri": "spotify:album:1GU705IudYAvVOmgESEUbs"
+	},
+	{
+		"album_group": "single",
+		"album_type": "single",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/4cLYG7fp8Z7OyzlSEV6HED"
+		},
+		"href": "https://api.spotify.com/v1/albums/4cLYG7fp8Z7OyzlSEV6HED",
+		"id": "4cLYG7fp8Z7OyzlSEV6HED",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b273a62d30fc92faea8408869ce8",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e02a62d30fc92faea8408869ce8",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d00004851a62d30fc92faea8408869ce8",
+				"width": 64
+			}
+		],
+		"name": "Spring Songs",
+		"release_date": "2013-11-12",
+		"release_date_precision": "day",
+		"total_tracks": 4,
+		"type": "album",
+		"uri": "spotify:album:4cLYG7fp8Z7OyzlSEV6HED"
+	},
+	{
+		"album_group": "single",
+		"album_type": "single",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/4z0Ai287yjlo0YWRfsf5u6"
+		},
+		"href": "https://api.spotify.com/v1/albums/4z0Ai287yjlo0YWRfsf5u6",
+		"id": "4z0Ai287yjlo0YWRfsf5u6",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b273a719fe9a49c07280d6c75830",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e02a719fe9a49c07280d6c75830",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d00004851a719fe9a49c07280d6c75830",
+				"width": 64
+			}
+		],
+		"name": "Face Ghost",
+		"release_date": "2013-04-22",
+		"release_date_precision": "day",
+		"total_tracks": 1,
+		"type": "album",
+		"uri": "spotify:album:4z0Ai287yjlo0YWRfsf5u6"
+	},
+	{
+		"album_group": "single",
+		"album_type": "single",
+		"artists": [
+			{
+				"external_urls": {
+					"spotify": "https://open.spotify.com/artist/2CnhqfjUG0qzsru0SMuhrk"
+				},
+				"href": "https://api.spotify.com/v1/artists/2CnhqfjUG0qzsru0SMuhrk",
+				"id": "2CnhqfjUG0qzsru0SMuhrk",
+				"name": "Title Fight",
+				"type": "artist",
+				"uri": "spotify:artist:2CnhqfjUG0qzsru0SMuhrk"
+			}
+		],
+		"external_urls": {
+			"spotify": "https://open.spotify.com/album/4uLPShAa2Ocz7sqmtiBxSN"
+		},
+		"href": "https://api.spotify.com/v1/albums/4uLPShAa2Ocz7sqmtiBxSN",
+		"id": "4uLPShAa2Ocz7sqmtiBxSN",
+		"images": [
+			{
+				"height": 640,
+				"url": "https://i.scdn.co/image/ab67616d0000b2733d66f43da2389fabd45f3140",
+				"width": 640
+			},
+			{
+				"height": 300,
+				"url": "https://i.scdn.co/image/ab67616d00001e023d66f43da2389fabd45f3140",
+				"width": 300
+			},
+			{
+				"height": 64,
+				"url": "https://i.scdn.co/image/ab67616d000048513d66f43da2389fabd45f3140",
+				"width": 64
+			}
+		],
+		"name": "Flood of '72",
+		"release_date": "2007-04-11",
+		"release_date_precision": "day",
+		"total_tracks": 1,
+		"type": "album",
+		"uri": "spotify:album:4uLPShAa2Ocz7sqmtiBxSN"
+	}
+]

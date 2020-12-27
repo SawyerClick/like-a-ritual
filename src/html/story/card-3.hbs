@@ -1,6 +1,15 @@
 <div id='card-3' class='card center'>
 	<div class='content'>
-		<h1 class='part'>Card 3</h1>
-		<h1 class='part'>im just texting this!!</h1>
+		<div class='whitebg well albumExplainer'>
+			<p>Title Fight has released 51 songs over four full-length albums, an EP and two singles</p>
+		</div>
+		<div class='albums'>
+			{{#each albumsBase}}
+				<div class='album'>
+					<p>{{name}}</p>
+					<img src='{{images.0.url}}'></img>
+				</div>
+			{{/each}}
+		</div>
 	</div>
 </div>

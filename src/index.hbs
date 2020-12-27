@@ -13,7 +13,6 @@ author:
 shareImg: ''
 analytics: ""
 ---
-
 {{!< default}}
 
 <section class="" id="touch">
@@ -38,9 +37,7 @@ analytics: ""
 			</div>
 		</div>
 		<div class='part' id='explainer'>
-			{{!-- <div class='audioWarning'> --}}
-				<p class='audioWarning'>psssst</br>plug in your headphones and turn that volume up, this bad boy has audio</p>
-			{{!-- </div> --}}
+			<p class='audioWarning'>plug in your headphones and turn that volume up, this bad boy has audio</p>
 			<div class="left">
 				<p>👈👈 Tap left-screen</p>
 			</div>
@@ -53,18 +50,13 @@ analytics: ""
 	{{!-- {{> story/card-2 }} --}}
 	<div id='card-2' class='card center'>
 		<div class='content'>
-			<div class='part'>
-				<div class='background-image'>
-					<img src='https://i.scdn.co/image/f655f973e8e6ac3b8e556d1dbc11aac05d19a2b4'/>
-				</div>
-				<div class='introText well'>
-					<h1>This is Title Fight</h1>
-					<p>They're not a band anymore, but they're still my favorite. I listen to their music every day, and Spotify tells me I'm not alone, with at least 211k other people listening to them every month.</p>
-					<p>The Kingston, PA, group hasn't released music since the 2015 release of Hyperview, their fourth studio album. Members of the bands have gone of to other projects, of which I'd strongly recommend Ned Russin's Gliterrer. Still, Title Fight's fanbase - including me - has yet to give up hope for a new album.</p>
-				</div>
+			<div class='background-image center'>
+				<img src='https://i.scdn.co/image/f655f973e8e6ac3b8e556d1dbc11aac05d19a2b4'/>
 			</div>
-			<div class='part well secondText'>
-				<p>Let's dive into their discography using data from Spotify and figure out why.</p>
+			<div class='well center introText alignLeft'>
+				<h1>This is Title Fight</h1>
+				<p>They're not a band anymore, but they're still my favorite. I listen to their music every day, and Spotify tells me I'm not alone, with at least 211k other people listening to them every month.</p>
+				<p>The Kingston, PA, group hasn't released music since the 2015 release of Hyperview, their fourth studio album. Members of the bands have gone of to other projects, of which I'd recommend Glitterer. Still, Title Fight's fanbase - including me - has yet to give up hope for a new album.</p>
 			</div>
 		</div>
 	</div>
@@ -72,9 +64,42 @@ analytics: ""
 	{{!-- {{> story/card-3 }} --}}
 	<div id='card-3' class='card center'>
 		<div class='content'>
-			<h1 class='part'>Card 3</h1>
-			<h1 class='part'>im just testing this!!</h1>
+			<div class='part center'>
+				<div class='whitebg well albumExplainer'>
+					<p>Title Fight has released 51 songs over four full-length albums, an EP and two singles.</p>
+				</div>
+				<div class='albums'>
+					{{#each albums}}
+						<div class='album'>
+							<p style='display:none;'>{{name}}</p>
+							{{!-- <p>{{popularity}}% popularity</p> --}}
+							<img class='{{name}}' src='{{images.0.url}}'></img>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+			<div class='part center'>
+				<div class='whitebg well albumExplainer'>
+					<p>Years later, Spotify data shows most are still pretty popular, including my favorite, Floral Green.</p>
+				</div>
+				<div class='albums'>
+					{{#each albums}}
+						<div class='album center'>
+							<p>{{name}}</p>
+							<p>{{popularity}}%<br>popularity</p>
+						</div>
+					{{/each}}
+				</div>
+			</div>
 		</div>
 	</div>
+
+	{{!-- {{> story/card-4 }} --}}
+	<div id='card-4' class='card center'>
+		<div class='content'>
+			<div id='scatterTracks'><svg></svg></div>
+		</div>
+	</div>
+
 
 </section>
