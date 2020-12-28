@@ -12,6 +12,11 @@ function ready([tracks, album]) {
 	console.log(tracks)
 	console.log(album)
 
+	// no one stays at the top forever | d948c819e0f4dfc69ca1d84bfe1d01393ca3c4e2
+	// secret society | e61375ad17705dc265890abdae911eade0a33435
+	// Frown | 80e735c8e1c3e951afd64567e29e96c5a3a24c0a
+	// murder your memory | 693ffd35a748011ecf51684b118de8f2126f5a4c
+
 	const cardNames = [
 		{
 			id: 'card-1.0',
@@ -21,13 +26,14 @@ function ready([tracks, album]) {
 		{
 			id: 'card-1.1',
 			card: 'card-1',
-			audio: 'none'
+			audio:
+				'https://p.scdn.co/mp3-preview/e61375ad17705dc265890abdae911eade0a33435.mp3'
 		},
 		{
 			id: 'card-2.0',
 			card: 'card-2',
 			audio:
-				'https://p.scdn.co/mp3-preview/94c4f8a738c0a901b587ac9e47b2b55946fb2047.mp3'
+				'https://p.scdn.co/mp3-preview/e61375ad17705dc265890abdae911eade0a33435.mp3'
 		},
 		{
 			id: 'card-3.0',
@@ -250,11 +256,12 @@ function ready([tracks, album]) {
 				.attr('opacity', 0)
 				.style('font-size', y.bandwidth())
 				.transition()
-				.duration(500)
+				// .duration(500)
 				.attr('y', (d) => y(d.uri) + y.bandwidth() / 1.75)
 				.attr('x', 5)
 				.transition()
-				.delay((d, i) => i * 15)
+				// .duration()
+				.delay((d, i) => i * 10 + 200)
 				.attr('opacity', 1)
 		}
 

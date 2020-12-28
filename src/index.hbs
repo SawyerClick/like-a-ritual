@@ -72,8 +72,7 @@ analytics: ""
 					{{#each albums}}
 						<div class='album'>
 							<p style='display:none;'>{{name}}</p>
-							{{!-- <p>{{popularity}}% popularity</p> --}}
-							<img class='{{name}}' src='{{images.0.url}}'></img>
+							<img src='{{images.0.url}}'></img>
 						</div>
 					{{/each}}
 				</div>
@@ -85,8 +84,7 @@ analytics: ""
 				<div class='albums'>
 					{{#each albums}}
 						<div class='album center'>
-							<p>{{name}}</p>
-							<p>{{popularity}}%popularity</p>
+							<p class='center'>{{name}}</br></br>{{popularity}}%<br>popularity</p>
 						</div>
 					{{/each}}
 				</div>
