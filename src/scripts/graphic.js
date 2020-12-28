@@ -259,7 +259,7 @@ function ready([tracks, album]) {
 		}
 
 		function track2() {
-			const yColumn = 'energy'
+			const yColumn = 'valence'
 			const xColumn = 'valence'
 			const x = d3
 				.scaleLinear()

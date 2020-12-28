@@ -184,6 +184,7 @@ body {
         pointer-events: none;
         z-index: 2;
         box-sizing: border-box;
+        overflow: hidden;
         &.visible {
           visibility: visible;
           // display: flex;
@@ -243,7 +244,7 @@ body {
               6px 5px 0px $green, -1px 2px 0 $black, 0 3px 0 $green,
               1px 4px 0 $green, 2px 5px 0px $green, 2px -1px 0 $green,
               3px 0 0 $green, 4px 1px 0 $green, 5px 2px 0px $green,
-              6px 3px 0 $green, 7px 4px 0 $green, 10px 10px 4px $green;
+              6px 3px 0 $green, 7px 4px 0 $green, 7px 7px 15px $green;
             &:first-of-type {
               margin-top: -8vw;
             }
@@ -546,7 +547,7 @@ text.track {
               width: 100vw !important;
               position: absolute;
               height: 100%;
-              bottom: 5rem;
+              bottom: 4rem;
               p {
                 width: 100%;
                 hyphens: auto;
@@ -557,37 +558,44 @@ text.track {
               }
             }
             .left {
-              bottom: 7rem;
+              bottom: 6rem;
             }
           }
         }
         #card-2 {
+          max-width: 100vw;
           .content {
             height: 100vh;
             padding-top: 0;
-            .part:first-of-type {
-              .background-image {
-                max-width: 100%;
-                max-height: 175px;
-                position: relative;
-                top: 0;
-                right: 0;
-                img {
-                  object-fit: cover;
-                  width: 100%;
-                }
+            .background-image {
+              max-width: 100%;
+              // overflow: hidden;
+              max-height: 300px;
+              position: relative;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              img {
+                object-fit: contain;
+                width: 100%;
               }
-              .introText {
-                position: static;
-                background-color: $navy;
-                margin-top: 0;
-                h1 {
-                  color: $white;
-                  font-size: 2rem;
-                }
-                p {
-                  color: $white;
-                }
+            }
+            .introText {
+              background-color: $navy;
+              margin-top: 0;
+              position: static;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              width: 100vw;
+              h1 {
+                color: $white;
+                font-size: 2rem;
+              }
+              p {
+                color: $white;
               }
             }
             .secondText {
@@ -596,6 +604,40 @@ text.track {
               p {
                 color: $white;
                 font-size: 1.25rem;
+              }
+            }
+          }
+        }
+        #card-3 {
+          background-color: $black;
+          color: $black;
+          .part {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100vh;
+            flex-wrap: wrap;
+            .albumExplainer {
+              // margin-top: 5rem;
+              background-color: $black;
+              p {
+                font-size: 1.25rem;
+                color: $white;
+              }
+            }
+            .albums {
+              margin-right: 0;
+              // text-align: left;
+              .album {
+                height: auto;
+                width: 35%;
+                p {
+                  color: $black;
+                  max-width: 100%;
+                  font-size: 1rem;
+                }
               }
             }
           }
