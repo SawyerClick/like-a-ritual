@@ -16,6 +16,8 @@ function ready([tracks, album]) {
 	// secret society | e61375ad17705dc265890abdae911eade0a33435
 	// Frown | 80e735c8e1c3e951afd64567e29e96c5a3a24c0a
 	// murder your memory | 693ffd35a748011ecf51684b118de8f2126f5a4c
+	// head in the ceiling fan | bc4b7cc516cf570255256e64c63c5addfca21a0f
+	// your pain is mine now |
 
 	const cardNames = [
 		{
@@ -26,33 +28,46 @@ function ready([tracks, album]) {
 		{
 			id: 'card-1.1',
 			card: 'card-1',
-			audio:
-				'https://p.scdn.co/mp3-preview/e61375ad17705dc265890abdae911eade0a33435.mp3'
+			audio: 'none'
 		},
 		{
 			id: 'card-2.0',
 			card: 'card-2',
-			audio:
-				'https://p.scdn.co/mp3-preview/e61375ad17705dc265890abdae911eade0a33435.mp3'
+			audio: 'e61375ad17705dc265890abdae911eade0a33435'
 		},
 		{
 			id: 'card-3.0',
 			card: 'card-3',
-			audio: 'none'
+			audio: 'e61375ad17705dc265890abdae911eade0a33435'
 		},
 		{
 			id: 'card-3.1',
 			card: 'card-3',
-			audio: 'none'
+			audio: 'e61375ad17705dc265890abdae911eade0a33435'
+		},
+		{
+			id: 'card-3.2',
+			card: 'card-3',
+			audio: 'e61375ad17705dc265890abdae911eade0a33435'
 		},
 		{
 			id: 'card-4.0',
 			card: 'card-4',
-			audio: 'none'
+			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
 		},
 		{
 			id: 'card-4.1',
 			card: 'card-4',
+			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
+		},
+		{
+			id: 'card-4.2',
+			card: 'card-4',
+			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
+		},
+		{
+			id: 'card-5.1',
+			card: 'card-5',
 			audio: 'none'
 		}
 	]
@@ -85,7 +100,9 @@ function ready([tracks, album]) {
 	function playSound() {
 		// console.log('playing sound', cardNames[currentCard].audio)
 		const newSound = new Howl({
-			src: [cardNames[currentCard].audio],
+			src: [
+				'https://p.scdn.co/mp3-preview/' + cardNames[currentCard].audio + '.mp3'
+			],
 			volume: 0.8,
 			loop: true
 		})
@@ -94,7 +111,9 @@ function ready([tracks, album]) {
 		noiseArray.push(newSound)
 	}
 
-	const margin = { top: 25, right: 25, bottom: 25, left: 25 }
+	let margin = { top: 100, right: 25, bottom: 25, left: 25 }
+	if (window.innerWidth < 600)
+		margin = { top: 50, right: 25, bottom: 25, left: 25 }
 	const svgContainer = d3.select('#scatterTracks').node()
 	const svgWidth = svgContainer.offsetWidth
 	const svgHeight = svgContainer.offsetHeight
@@ -106,6 +125,96 @@ function ready([tracks, album]) {
 		.attr('height', svgHeight)
 		.append('g')
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+	const color = d3
+		.scaleOrdinal()
+		.domain([
+			'Hyperview',
+			'Floral Green',
+			'Shed',
+			'The Last Thing You Forget',
+			'Spring Songs',
+			'Face Ghost',
+			"Flood of '72"
+		])
+		.range([
+			'hsla(27, 22%, 82%, 1)',
+			'hsla(168, 30%, 55%, 1)',
+			'hsla(224, 90%, 70%, 1)',
+			'hsla(270, 30%, 70%, 1)',
+			'hsla(201, 50%, 75%, 1)',
+			'hsla(0, 45%, 60%, 1)',
+			'hsla(210, 15%, 60%, 1)'
+		])
+
+	d3.selectAll('.album')
+		.style('background-color', function (d) {
+			return color(d3.select(this).text().trim())
+		})
+		.attr('class', function (d) {
+			if (d3.select(this).select('.albumName').node()) {
+				const nameClean = d3
+					.select(this)
+					.select('.albumName')
+					.text()
+					.trim()
+					.replace(/[^a-z0-9]/gi, '-')
+				return `${nameClean} album`
+			} else {
+				return 'album'
+			}
+		})
+
+	const albumOrder = [...album]
+		.sort((a, b) =>
+			d3.ascending(+a.release_date.split('-')[0], +a.release_date.split('-')[0])
+		)
+		.map((d) => d.name)
+
+	const tracksByDate = [...tracks]
+		.sort((a, b) => d3.descending(a.track_number, b.track_number))
+		.sort((a, b) =>
+			d3.descending(albumOrder.indexOf(a.album), albumOrder.indexOf(b.album))
+		)
+
+	const y = d3
+		.scaleBand()
+		.domain(tracksByDate.map((d) => d.uri))
+		.range([height, 0])
+		.paddingInner(0.15)
+
+	const track2Column = 'popularity'
+	const y2 = d3
+		.scaleBand()
+		.domain(
+			[...tracks]
+				.sort((a, b) => d3.ascending(a[track2Column], b[track2Column]))
+				.map((d) => d.uri)
+		)
+		.range([height, 0])
+		.paddingInner(0.15)
+
+	const x = d3.scaleLinear().domain([0, 55]).range([0, width])
+	let xAxisTicks = [0, 25, 50]
+	const axisOptions = d3
+		.axisTop(x)
+		.tickValues(xAxisTicks)
+		.tickFormat((x, i) => (i === 0 ? x + '% popularity' : x + '%'))
+		.tickSize(-height)
+		.tickPadding(10)
+
+	const xAxis = (g) =>
+		g
+			.attr('transform', `translate(0,${0})`)
+			.call(axisOptions)
+			.attr('class', 'x-axis')
+
+	const axis = tracksVis.append('g').call(xAxis).style('opacity', 0)
+
+	tracksVis
+		.select('g.x-axis text:first-of-type')
+		.attr('dx', '-4.5px')
+		.attr('text-anchor', 'start')
 
 	function updateCard(direction) {
 		previousCard = currentCard
@@ -156,15 +265,38 @@ function ready([tracks, album]) {
 		d3.select(`#${currentId}`)
 			.selectAll('.part')
 			.style('opacity', (d, i) => {
-				if (i == idCount) {
-					return 1
-				} else if (i < idCount) {
-					return 0.3
+				if (!['card-4', 'card-3'].includes(cardNames[currentCard].card)) {
+					if (i == idCount) {
+						return 1
+					} else if (i < idCount) {
+						return 0.2
+					} else {
+						return 0
+					}
 				} else {
-					return 0
+					if (i == idCount) {
+						return 1
+					} else {
+						return 0
+					}
+				}
+			})
+			.style('display', (d, i) => {
+				if (cardNames[currentCard].card === 'card-4') {
+					if (i == idCount) {
+						return 'block'
+					} else {
+						return 'none'
+					}
 				}
 			})
 			.style('z-index', (d, i) => (i == idCount ? '2' : '-1'))
+
+		if (currentCard === 5) {
+			d3.select('#card-3 .tweetEmbed').style('opacity', 1)
+		} else {
+			d3.select('#card-3 .tweetEmbed').style('opacity', 0)
+		}
 
 		console.log(
 			'touched:',
@@ -179,57 +311,15 @@ function ready([tracks, album]) {
 
 		lastAudio = cardNames[currentCard].audio
 
-		const color = d3
-			.scaleOrdinal()
-			.domain([
-				'Hyperview',
-				'Floral Green',
-				'Shed',
-				'The Last Thing You Forget',
-				'Spring Songs',
-				'Face Ghost',
-				"Flood of '72"
-			])
-			.range([
-				'hsla(27, 22%, 82%, 1)',
-				'hsla(168, 30%, 55%, 1)',
-				'hsla(224, 90%, 70%, 1)',
-				'hsla(270, 30%, 70%, 1)',
-				'hsla(201, 50%, 75%, 1)',
-				'hsla(0, 45%, 60%, 1)',
-				'hsla(210, 15%, 60%, 1)'
-			])
-
-		d3.selectAll('.album').style('background-color', function (d) {
-			return color(d3.select(this).text().trim())
-		})
-
 		function track1() {
-			const yColumn = 'danceability'
-			const xColumn = 'valence'
-			const albumOrder = [...album]
-				.sort((a, b) =>
-					d3.ascending(
-						+a.release_date.split('-')[0],
-						+a.release_date.split('-')[0]
-					)
-				)
-				.map((d) => d.name)
-
-			const tracksByDate = [...tracks]
-				.sort((a, b) => d3.descending(a.track_number, b.track_number))
-				.sort((a, b) =>
-					d3.descending(
-						albumOrder.indexOf(a.album),
-						albumOrder.indexOf(b.album)
-					)
-				)
-
-			const y = d3
-				.scaleBand()
-				.domain(tracksByDate.map((d) => d.uri))
-				.range([height, 0])
-				.paddingInner(0.15)
+			function getAlbumNode(d) {
+				const nameClean = d.album.replace(/[^a-z0-9]/gi, '-')
+				const thisAlbumNode = d3
+					.select(`.album.${nameClean}`)
+					.node()
+					.getBoundingClientRect()
+				return thisAlbumNode
+			}
 
 			tracksVis
 				.selectAll('rect.track')
@@ -237,15 +327,28 @@ function ready([tracks, album]) {
 				.join('rect')
 				.attr('class', 'track')
 				.attr('id', (d) => 'id' + d.uri.split(':')[2])
+				.attr('opacity', 1)
 				.attr('fill', (d) => color(d.album))
 				.attr('rx', 6)
 				.attr('ry', 6)
-				.attr('x', 0)
-				.attr('height', (d) => y.bandwidth())
+				.attr('x', (d) =>
+					previousCard === 5 ? getAlbumNode(d).x - margin.left : 0
+				)
+				.attr('width', (d) =>
+					previousCard === 5 ? getAlbumNode(d).width : x(d.popularity)
+				)
+				.attr('y', (d) =>
+					previousCard === 5 ? getAlbumNode(d).y - margin.top : y(d.uri)
+				)
+				.attr('height', (d) =>
+					previousCard === 5 ? getAlbumNode(d).height : y.bandwidth()
+				)
 				.transition()
-				.duration(500)
+				.duration(750)
 				.attr('y', (d) => y(d.uri))
 				.attr('width', width)
+				.attr('x', 0)
+				.attr('height', y.bandwidth())
 
 			tracksVis
 				.selectAll('text.track')
@@ -253,56 +356,85 @@ function ready([tracks, album]) {
 				.join('text')
 				.attr('class', 'track')
 				.text((d) => d.name)
-				.attr('opacity', 0)
+				.attr('opacity', previousCard === 5 ? 0 : 1)
 				.style('font-size', y.bandwidth())
 				.transition()
-				// .duration(500)
 				.attr('y', (d) => y(d.uri) + y.bandwidth() / 1.75)
 				.attr('x', 5)
 				.transition()
-				// .duration()
-				.delay((d, i) => i * 10 + 200)
+				.delay((d, i) => (previousCard === 4 ? i * 10 + 1000 : i * 10 + 800))
 				.attr('opacity', 1)
+
+			tracksVis.select('.x-axis').transition().style('opacity', 0)
 		}
 
 		function track2() {
-			const yColumn = 'valence'
-			const xColumn = 'valence'
-			const x = d3
-				.scaleLinear()
-				.domain(d3.extent(tracks, (d) => d.features[yColumn]))
-				.range([0, width])
+			if (window.innerWidth < 600) {
+				tracksVis
+					.selectAll('text.track')
+					.transition()
+					.duration(250)
+					.attr('opacity', 0)
+			}
 
-			const y = d3
-				.scaleBand()
-				.domain(
-					[...tracks]
-						.sort((a, b) =>
-							d3.ascending(a.features[yColumn], b.features[yColumn])
-						)
-						.map((d) => d.uri)
-				)
-				.range([height, 0])
-				.paddingInner(0.15)
+			const xColumn = 'popularity'
+			x.domain([0, 55])
+			xAxisTicks = [0, 25, 50]
+			axisOptions
+				.tickValues(xAxisTicks)
+				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
 
 			tracksVis
-				.selectAll('text.track')
+				.select('g.x-axis')
 				.transition()
-				.duration(250)
-				.attr('opacity', 0)
+				.duration(500)
+				.delay(previousCard === 6 ? 1000 : 0)
+				.call(xAxis)
+				.call((g) => g.selectAll('.domain').remove())
+				.style('opacity', 1)
 
 			tracksVis
 				.selectAll('rect.track')
 				.transition()
 				.duration(500)
 				.attr('y', (d) => y(d.uri))
+				// .transition()
+				.delay((d) => (previousCard === 6 ? y.domain().indexOf(d.uri) * 15 : 0))
+				.attr('width', (d) => x(d[track2Column]))
+				.attr('opacity', (d) =>
+					[
+						'Your Pain Is Mine Now',
+						'Head in the Ceiling Fan',
+						'Murder Your Memory'
+					].includes(d.name)
+						? 1
+						: 0.5
+				)
+		}
+
+		function track3() {
+			const xColumn = 'energy'
+			x.domain([0, 100])
+			xAxisTicks = [0, 50, 100]
+			axisOptions
+				.tickValues(xAxisTicks)
+				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
+
+			tracksVis.select('g.x-axis').transition().duration(500).call(xAxis)
+
+			tracksVis
+				.selectAll('rect.track')
 				.transition()
-				.delay((d) => y.domain().indexOf(d.uri) * 15)
-				.attr('width', (d) => x(d.features[yColumn]))
+				.duration(500)
+				.attr('y', (d) => y(d.uri))
+				// .transition()
+				// .delay((d) => y.domain().indexOf(d.uri) * 15)
+				.attr('width', (d) => x(d.features[xColumn] * 100))
 		}
 
 		if (cardNames[currentCard].id === 'card-4.0') track1()
 		if (cardNames[currentCard].id === 'card-4.1') track2()
+		if (cardNames[currentCard].id === 'card-4.2') track3()
 	}
 
 	updateCard('none')

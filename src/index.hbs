@@ -32,17 +32,19 @@ analytics: ""
 				<h1>Like a</h1>
 				<h1>ritual</h1>
 				<h2>An audiovisual ode to Title Fight</h2>
-				<h2 class='byline'>By Sawyer Click</h3>
+				<h2 class='byline'>By Sawyer Click</h2>
+				<h2 class='date'>Jan. 2021</h2>
 				<h2 class='button'>Tap anywhere to continue</h2>
 			</div>
 		</div>
 		<div class='part' id='explainer'>
+			{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
 			<p class='audioWarning'>plug in your headphones and turn that volume up, this bad boy has audio</p>
-			<div class="left">
-				<p>👈👈 Tap left-screen</p>
+			<div class="left tapExplainer">
+				<p>👈👈 Tap to go back</p>
 			</div>
-			<div class="right">
-				<p>Tap right-screen 👉👉</p>
+			<div class="right tapExplainer">
+				<p>Tap to go forward 👉👉</p>
 			</div>
 		</div>
 	</div>
@@ -53,10 +55,11 @@ analytics: ""
 			<div class='background-image center'>
 				<img src='https://i.scdn.co/image/f655f973e8e6ac3b8e556d1dbc11aac05d19a2b4'/>
 			</div>
+			<p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p>
 			<div class='well center introText alignLeft'>
 				<h1>This is Title Fight</h1>
 				<p>They're not a band anymore, but they're still my favorite. I listen to their music every day, and Spotify tells me I'm not alone, with at least 211k other people listening to them every month.</p>
-				<p>The Kingston, PA, group hasn't released music since the 2015 release of Hyperview, their fourth studio album. Members of the bands have gone of to other projects, of which I'd recommend Glitterer. Still, Title Fight's fanbase - including me - has yet to give up hope for a new album.</p>
+				<p>The Kingston, PA, group hasn't released music since the 2015 release of Hyperview, their fourth studio album. Members of the bands have gone off to other projects, of which I'd recommend Glitterer.</p>
 			</div>
 		</div>
 	</div>
@@ -64,9 +67,10 @@ analytics: ""
 	{{!-- {{> story/card-3 }} --}}
 	<div id='card-3' class='card center'>
 		<div class='content'>
+			<p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p>
 			<div class='part center'>
 				<div class='whitebg well albumExplainer'>
-					<p>Title Fight has released 51 songs over four full-length albums, an EP and two singles.</p>
+					<p>Title Fight has released three full-length albums, a compilation album, an EP and two singles. With each release the band drifted from its hardcore punk roots to a more mellow and shoegaze-y sound.</p>
 				</div>
 				<div class='albums'>
 					{{#each albums}}
@@ -79,12 +83,31 @@ analytics: ""
 			</div>
 			<div class='part center'>
 				<div class='whitebg well albumExplainer'>
-					<p>Years later, Spotify data shows most are still popular, including my favorite, Floral Green.</p>
+					<p>Years later, Spotify data shows most are still popular, especially Hyperview and Floral Green, my favorite. The interesting bit here is Hyperview's popularity. The LP was initially met with low reviews from fans for its skew toward shoegaze.</p>
 				</div>
 				<div class='albums'>
 					{{#each albums}}
 						<div class='album center'>
-							<p class='center'>{{name}}</br></br>{{popularity}}%<br>popularity</p>
+							<p class='center'><span class='albumName'>{{name}}</span></br>{{popularity}}%<br>popularity</p>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+			<div class='part center'>
+				<div class='well albumExplainer'>
+					<div class='tweetEmbed' style='opacity:0;'>
+						<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">Title Fight’s Hyperview is like a loving and beautiful mother with a million shitty, ungrateful, boring children</p>&mdash; the e word podcast (@theewordpodcast) <a href="https://twitter.com/theewordpodcast/status/1308064883406262274?ref_src=twsrc%5Etfw">September 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</div>
+				</div>
+				<div class='albums'>
+					{{#each albums}}
+						<div class='album center'>
+							<span class='albumName' style='display:none;'>{{name}}</span>
+							{{#if metacritic}}
+								<p class='center'>{{metacritic}}%<br>metacritic</br></br>{{needleDrop}}</br>Needle Drop</p>
+								{{else}}
+								<p class='center'></p>
+							{{/if}}
 						</div>
 					{{/each}}
 				</div>
@@ -95,9 +118,22 @@ analytics: ""
 	{{!-- {{> story/card-4 }} --}}
 	<div id='card-4' class='card center'>
 		<div class='content'>
+			{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
+			<p class='nowPlaying'>🎶 Your Pain Is Mine Now from Hyperview 🎶</p>
 			<div id='scatterTracks'><svg></svg></div>
+			<div class='part center well'>
+				<p class='whitebg'>These are the 51 songs that Title Fight released, from most recent up top to their first singles at the bottom. Let's dig into how their music has changed.</p>
+			</div>
+			<div class='part center well'>
+				<p class='whitebg'>Fans still closely listen to the singles like "Your Pain Is Mine Now", "Murder Your Memory" and "Head in the Ceiling Fan". Altogether, Hyperview has the most popular songs. Fans have come around to the sound, but it was too late.</p>
+			</div>
 		</div>
 	</div>
 
-
+	<div id='card-5' class='card center'>
+		{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
+		<div class='content'>
+			<h1 class='center'>The end</h1>
+		</div>
+	</div>
 </section>

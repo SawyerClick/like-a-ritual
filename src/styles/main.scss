@@ -212,7 +212,6 @@ body {
           z-index: -1;
         }
         .headline {
-          // display: block;
           text-align: center;
           text-transform: uppercase;
           z-index: 1;
@@ -229,9 +228,9 @@ body {
           }
           h1 {
             position: relative;
-            display: inline-block;
-            font-size: 20%;
-            letter-spacing: 0.2rem;
+            display: block;
+            font-size: max(15vw, 7rem);
+            letter-spacing: 0.5rem;
             color: hsla(163, 16%, 91%, 1);
             line-height: 1.4;
             padding-bottom: 0;
@@ -259,7 +258,14 @@ body {
             font-size: 1.25rem;
             letter-spacing: 0.3rem;
           }
+          h2.date {
+            margin-top: 0rem;
+            font-weight: 400;
+            font-size: 1.25rem;
+            letter-spacing: 0.3rem;
+          }
           h2.button {
+            position: static;
             font-family: $body;
             background-color: $navy;
             padding: 15px;
@@ -279,17 +285,9 @@ body {
           display: flex;
           opacity: 0;
           box-sizing: border-box;
-          // background: $white;
-          p {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            font-size: 1.15rem;
-            color: $white;
-          }
           .audioWarning {
             position: absolute;
-            bottom: 4rem;
+            bottom: 10%;
             left: 0;
             right: 0;
             text-align: center;
@@ -300,7 +298,15 @@ body {
             background-color: $black;
             color: $white;
             border-radius: 1rem;
-            padding: 50px 1rem;
+            padding: 2rem 2rem;
+            font-size: 1.3rem;
+          }
+          .tapExplainer p {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.15rem;
+            color: $white;
           }
           .left {
             width: 50%;
@@ -330,7 +336,7 @@ body {
           padding-top: 10rem;
           .background-image {
             position: absolute;
-            left: 10rem;
+            left: 10vw;
             right: 0rem;
             top: 0;
             bottom: 0;
@@ -346,7 +352,7 @@ body {
           }
           .introText {
             background-color: white;
-            padding: 2rem 4rem;
+            padding: 2rem 3rem;
             position: absolute;
             right: 0;
             bottom: 5rem;
@@ -369,15 +375,14 @@ body {
             z-index: 1;
             p {
               color: $black;
-              font-size: 1.25rem;
+              font-size: 1rem;
             }
           }
         }
       }
       #card-3 {
-        background-color: $black;
+        background-color: $navy;
         color: $black;
-
         .part {
           position: absolute;
           top: 0;
@@ -388,8 +393,15 @@ body {
           flex-wrap: nowrap;
           .albumExplainer {
             // margin-top: 5rem;
+            padding: 1rem;
+            margin: 1rem;
+            width: 100%;
+            max-width: 500px;
             p {
-              font-size: 1.25rem;
+              font-size: 1rem;
+            }
+            .tweetEmbed {
+              margin-left: -1rem;
             }
           }
           .albums {
@@ -399,23 +411,31 @@ body {
             margin-right: 1rem;
             .album {
               display: inline-block;
-              margin: 0.5rem;
+              margin: 0.25em;
               padding: 1rem;
               color: $black;
-              width: 15vw;
-              height: 15vw;
+              width: max(15vw, 150px);
+              height: max(15vw, 150px);
               max-height: 175px;
               max-width: 175px;
-              border-radius: 0.5rem;
+              border-radius: 1rem;
               vertical-align: middle;
+              // border: 5px solid $navy;
+              box-sizing: border-box;
               img {
                 width: 100%;
+                border-radius: 0.5rem;
               }
               p {
                 color: $black;
                 max-width: 100%;
-                font-size: 1.25rem;
+                font-size: max(1.4vw, 16px);
                 height: 100%;
+                span {
+                  color: $black;
+                  width: 100%;
+                  height: 0px;
+                }
               }
             }
           }
@@ -425,6 +445,7 @@ body {
         }
       }
       #card-4 {
+        background-color: $black;
         #scatterTracks {
           position: absolute;
           overflow: visible;
@@ -435,7 +456,7 @@ body {
           bottom: 0;
           width: 100%;
           height: 100%;
-          z-index: -9999;
+          z-index: -1;
           svg {
             overflow: visible;
           }
@@ -482,8 +503,38 @@ body {
 
 .whitebg {
   background-color: $white;
+  color: $black;
+  padding: 1rem;
   p {
     color: $black;
+  }
+}
+
+.nowPlaying {
+  position: absolute !important;
+  top: 1rem !important;
+  left: 1rem !important;
+  background-color: $white !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 1rem !important;
+  color: $black !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.x-axis {
+  .domain {
+    opacity: 0;
+  }
+  .tick {
+    line {
+      fill: $white;
+    }
+    text {
+      fill: $white;
+      font-family: $body;
+      font-size: 18px;
+    }
   }
 }
 
@@ -493,7 +544,7 @@ text.track {
   alignment-baseline: middle;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .well {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
@@ -502,12 +553,16 @@ text.track {
   * {
     font-size: 14px;
   }
+  .nowPlaying {
+    display: none;
+  }
   body {
     #content {
       #story {
         #card-1 {
           opacity: 1;
           .headline {
+            margin-bottom: 2rem;
             h2 {
               font-size: 1.75rem;
               letter-spacing: normal;
@@ -522,6 +577,10 @@ text.track {
               letter-spacing: normal;
             }
             h2.button {
+              position: absolute;
+              bottom: 10%;
+              left: 0;
+              right: 0;
               font-size: 1.15rem;
               padding: 10px;
               max-width: 300px;
@@ -532,10 +591,6 @@ text.track {
           #explainer {
             display: block;
             .audioWarning {
-              border-radius: 0;
-              padding: 75px 1rem;
-              z-index: 2;
-              bottom: 10rem;
               display: none;
             }
             .left,
@@ -544,7 +599,7 @@ text.track {
               position: absolute;
               height: 100%;
               bottom: 2rem;
-              p {
+              .tapExplainer p {
                 width: 100%;
                 hyphens: auto;
                 padding: 0 1rem;
@@ -565,27 +620,28 @@ text.track {
             padding-top: 0;
             .background-image {
               max-width: 100%;
-              // overflow: hidden;
-              max-height: 200px;
+              overflow: hidden;
+              height: auto;
               position: relative;
               top: 0;
               right: 0;
               bottom: 0;
               left: 0;
               img {
-                object-fit: contain;
-                width: 100%;
+                object-fit: cover;
+                width: 100vw;
               }
             }
             .introText {
               background-color: $navy;
               margin-top: 0;
-              position: static;
-              top: 0;
+              position: absolute;
+              top: 40%;
               right: 0;
               bottom: 0;
               left: 0;
               width: 100%;
+              display: block;
               h1 {
                 color: $white;
                 font-size: 2rem;
@@ -599,13 +655,12 @@ text.track {
               padding: 1rem 1rem 0;
               p {
                 color: $white;
-                font-size: 1.25rem;
+                font-size: 1rem;
               }
             }
           }
         }
         #card-3 {
-          background-color: $black;
           color: $black;
           .part {
             position: absolute;
@@ -617,13 +672,24 @@ text.track {
             flex-wrap: wrap;
             align-items: flex-start;
             display: block;
-            // padding: 8rem 0;
             .albumExplainer {
-              margin: 3rem auto;
-              background-color: $black;
+              margin: 0.5rem auto 0.5rem;
+              background-color: $navy;
+              height: 230px;
+              display: flex;
+              align-items: flex-end;
+              justify-content: flex-end;
+              flex-wrap: wrap;
               p {
-                font-size: 1.25rem;
+                font-size: 1.15rem;
                 color: $white;
+              }
+              .tweetEmbed {
+                margin: 0;
+                width: 100%;
+                .twitter-tweet {
+                  margin: 0 !important;
+                }
               }
             }
             .albums {
@@ -632,7 +698,7 @@ text.track {
                 height: auto;
                 width: 31vw;
                 height: 31vw;
-                margin: 0.15rem;
+                margin: 0.15em;
                 vertical-align: middle;
                 padding: 0.5rem;
                 p {
