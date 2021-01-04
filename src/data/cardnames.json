@@ -1,0 +1,77 @@
+[
+  {
+    "id": "card-1.0",
+    "card": "card-1",
+    "audio": "none"
+  },
+  {
+    "id": "card-1.1",
+    "card": "card-1",
+    "audio": "none"
+  },
+  {
+    "id": "card-2.0",
+    "card": "card-2",
+    "audio": "e61375ad17705dc265890abdae911eade0a33435",
+    "nowPlaying": "Secret Society from Floral Green"
+  },
+  {
+    "id": "card-3.0",
+    "card": "card-3",
+    "audio": "e61375ad17705dc265890abdae911eade0a33435",
+    "nowPlaying": "Secret Society from Floral Green"
+  },
+  {
+    "id": "card-3.1",
+    "card": "card-3",
+    "audio": "e61375ad17705dc265890abdae911eade0a33435",
+    "nowPlaying": "Secret Society from Floral Green"
+  },
+  {
+    "id": "card-3.2",
+    "card": "card-3",
+    "audio": "e61375ad17705dc265890abdae911eade0a33435",
+    "nowPlaying": "Secret Society from Floral Green"
+  },
+  {
+    "id": "card-4.0",
+    "card": "card-4",
+    "audio": "f0eeade594fabb03b37fb57cab7095ae4dae5e56",
+    "nowPlaying": "Your Pain Is Mine Now from Hyperview"
+  },
+  {
+    "id": "card-4.1",
+    "card": "card-4",
+    "audio": "f0eeade594fabb03b37fb57cab7095ae4dae5e56",
+    "nowPlaying": "Your Pain Is Mine Now from Hyperview"
+  },
+  {
+    "id": "card-4.2",
+    "card": "card-4",
+    "audio": "f0eeade594fabb03b37fb57cab7095ae4dae5e56",
+    "nowPlaying": "Your Pain Is Mine Now from Hyperview"
+  },
+  {
+    "id": "card-4.3",
+    "card": "card-4",
+    "audio": "94c4f8a738c0a901b587ac9e47b2b55946fb2047",
+    "nowPlaying": "Lefty from Floral Green (my fav)"
+  },
+  {
+    "id": "card-5.0",
+    "card": "card-5",
+    "audio": "94c4f8a738c0a901b587ac9e47b2b55946fb2047",
+    "nowPlaying": "Lefty from Floral Green (my fav)"
+  },
+  {
+    "id": "card-5.1",
+    "card": "card-5",
+    "audio": "94c4f8a738c0a901b587ac9e47b2b55946fb2047",
+    "nowPlaying": "Lefty from Floral Green (my fav)"
+  },
+  {
+    "id": "card-end.1",
+    "card": "card-end",
+    "audio": "none"
+  }
+]

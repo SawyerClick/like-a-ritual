@@ -3,12 +3,13 @@ import { Howl, Howler } from 'howler'
 
 Promise.all([
 	d3.json(require('/data/tracks.json')),
-	d3.json(require('/data/albums.json'))
+	d3.json(require('/data/albums.json')),
+	d3.json(require('/data/cardnames.json'))
 ])
 	.then(ready)
 	.catch((err) => console.log('Failed with', err))
 
-function ready([tracks, album]) {
+function ready([tracks, album, cardNames]) {
 	console.log(tracks)
 	console.log(album)
 
@@ -19,59 +20,6 @@ function ready([tracks, album]) {
 	// head in the ceiling fan | bc4b7cc516cf570255256e64c63c5addfca21a0f
 	// your pain is mine now |
 
-	const cardNames = [
-		{
-			id: 'card-1.0',
-			card: 'card-1',
-			audio: 'none'
-		},
-		{
-			id: 'card-1.1',
-			card: 'card-1',
-			audio: 'none'
-		},
-		{
-			id: 'card-2.0',
-			card: 'card-2',
-			audio: 'e61375ad17705dc265890abdae911eade0a33435'
-		},
-		{
-			id: 'card-3.0',
-			card: 'card-3',
-			audio: 'e61375ad17705dc265890abdae911eade0a33435'
-		},
-		{
-			id: 'card-3.1',
-			card: 'card-3',
-			audio: 'e61375ad17705dc265890abdae911eade0a33435'
-		},
-		{
-			id: 'card-3.2',
-			card: 'card-3',
-			audio: 'e61375ad17705dc265890abdae911eade0a33435'
-		},
-		{
-			id: 'card-4.0',
-			card: 'card-4',
-			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
-		},
-		{
-			id: 'card-4.1',
-			card: 'card-4',
-			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
-		},
-		{
-			id: 'card-4.2',
-			card: 'card-4',
-			audio: 'f0eeade594fabb03b37fb57cab7095ae4dae5e56'
-		},
-		{
-			id: 'card-5.1',
-			card: 'card-5',
-			audio: 'none'
-		}
-	]
-
 	const cardSequence = null
 	let currentId = 'intro'
 	let currentCard = 0
@@ -80,6 +28,7 @@ function ready([tracks, album]) {
 	const currentSoundTrack = 'null'
 	let lastAudio = 'null'
 	const noiseArray = []
+	let axis = null
 
 	currentId = cardNames[currentCard].card
 
@@ -112,6 +61,7 @@ function ready([tracks, album]) {
 	}
 
 	let margin = { top: 100, right: 25, bottom: 25, left: 25 }
+	let thisAlbum
 	if (window.innerWidth < 600)
 		margin = { top: 50, right: 25, bottom: 25, left: 25 }
 	const svgContainer = d3.select('#scatterTracks').node()
@@ -121,6 +71,13 @@ function ready([tracks, album]) {
 	const height = svgHeight - margin.top - margin.bottom
 	const tracksVis = d3
 		.select('#scatterTracks svg')
+		.attr('width', svgWidth)
+		.attr('height', svgHeight)
+		.append('g')
+		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+	const contourVis = d3
+		.select('#contourTracks svg')
 		.attr('width', svgWidth)
 		.attr('height', svgHeight)
 		.append('g')
@@ -146,6 +103,35 @@ function ready([tracks, album]) {
 			'hsla(0, 45%, 60%, 1)',
 			'hsla(210, 15%, 60%, 1)'
 		])
+
+	//  setting up contour
+	const xContourColumn = 'tempo'
+	const yContourColumn = 'liveness'
+	const colors = [
+		'#e5dfcb',
+		'#c8c1a3',
+		'#a7a38a',
+		'#828680',
+		'#5d6b78',
+		'#3d5066',
+		'#26364a',
+		'#161e29'
+	]
+	const linearColorScale = d3
+		.scaleLinear()
+		.domain(d3.range(0, 1, 1 / colors.length))
+		.range(colors.reverse())
+		.interpolate(d3.interpolateLab)
+	const yContour = d3.scaleLinear().domain([0, 1]).range([height, 0])
+	const xContour = d3
+		.scaleLinear()
+		.domain(d3.extent(tracks, (d) => d.features[xContourColumn]))
+		.range([0, width])
+	const contour = d3
+		.contourDensity()
+		.x((d) => xContour(d.features[xContourColumn]))
+		.y((d) => yContour(d.features[yContourColumn]))
+		.size([width, height])
 
 	d3.selectAll('.album')
 		.style('background-color', function (d) {
@@ -181,7 +167,7 @@ function ready([tracks, album]) {
 		.scaleBand()
 		.domain(tracksByDate.map((d) => d.uri))
 		.range([height, 0])
-		.paddingInner(0.15)
+		.paddingInner(0.1)
 
 	const track2Column = 'popularity'
 	const y2 = d3
@@ -208,13 +194,6 @@ function ready([tracks, album]) {
 			.attr('transform', `translate(0,${0})`)
 			.call(axisOptions)
 			.attr('class', 'x-axis')
-
-	const axis = tracksVis.append('g').call(xAxis).style('opacity', 0)
-
-	tracksVis
-		.select('g.x-axis text:first-of-type')
-		.attr('dx', '-4.5px')
-		.attr('text-anchor', 'start')
 
 	function updateCard(direction) {
 		previousCard = currentCard
@@ -254,6 +233,27 @@ function ready([tracks, album]) {
 				lastAudio != cardNames[currentCard].audio
 			) {
 				playSound()
+			}
+		}
+
+		const thisCard = d3.select('#' + currentId)
+		const thisNowPlaying = thisCard.select('.nowPlaying')
+		let nowPlayingText = null
+		if (cardNames[currentCard].nowPlaying)
+			nowPlayingText = cardNames[currentCard].nowPlaying
+
+		if (nowPlayingText) {
+			if (thisNowPlaying.node()) {
+				thisCard.select('.nowPlaying').text(`🎶 ${nowPlayingText} 🎶`)
+			} else {
+				thisCard
+					.append('p')
+					.attr('class', 'nowPlaying')
+					.text(`🎶 ${nowPlayingText} 🎶`)
+			}
+		} else {
+			if (thisNowPlaying.node()) {
+				thisNowPlaying.remove()
 			}
 		}
 
@@ -327,8 +327,7 @@ function ready([tracks, album]) {
 				.join('rect')
 				.attr('class', 'track')
 				.attr('id', (d) => 'id' + d.uri.split(':')[2])
-				.attr('opacity', 1)
-				.attr('fill', (d) => color(d.album))
+				.style('fill', (d) => color(d.album))
 				.attr('rx', 6)
 				.attr('ry', 6)
 				.attr('x', (d) =>
@@ -362,20 +361,24 @@ function ready([tracks, album]) {
 				.attr('y', (d) => y(d.uri) + y.bandwidth() / 1.75)
 				.attr('x', 5)
 				.transition()
-				.delay((d, i) => (previousCard === 4 ? i * 10 + 1000 : i * 10 + 800))
+				.duration(150)
+				.delay((d, i) => (previousCard === 5 ? i * 15 + 500 : i * 15 + 800))
 				.attr('opacity', 1)
 
-			tracksVis.select('.x-axis').transition().style('opacity', 0)
+			if (axis === null) {
+				axis = tracksVis.append('g').call(xAxis).style('opacity', 0)
+
+				tracksVis
+					.select('g.x-axis text:first-of-type')
+					.attr('dx', '-4.5px')
+					.attr('text-anchor', 'start')
+			}
+			axis.style('opacity', 0)
 		}
 
 		function track2() {
-			if (window.innerWidth < 600) {
-				tracksVis
-					.selectAll('text.track')
-					.transition()
-					.duration(250)
-					.attr('opacity', 0)
-			}
+			if (window.innerWidth < 600)
+				d3.selectAll('text').transition().duration(250).attr('opacity', 0)
 
 			const xColumn = 'popularity'
 			x.domain([0, 55])
@@ -384,11 +387,10 @@ function ready([tracks, album]) {
 				.tickValues(xAxisTicks)
 				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
 
-			tracksVis
-				.select('g.x-axis')
+			axis
 				.transition()
 				.duration(500)
-				.delay(previousCard === 6 ? 1000 : 0)
+				.delay(previousCard === 5 ? 200 : 0)
 				.call(xAxis)
 				.call((g) => g.selectAll('.domain').remove())
 				.style('opacity', 1)
@@ -398,17 +400,15 @@ function ready([tracks, album]) {
 				.transition()
 				.duration(500)
 				.attr('y', (d) => y(d.uri))
-				// .transition()
-				.delay((d) => (previousCard === 6 ? y.domain().indexOf(d.uri) * 15 : 0))
 				.attr('width', (d) => x(d[track2Column]))
-				.attr('opacity', (d) =>
+				.style('fill', (d) =>
 					[
 						'Your Pain Is Mine Now',
 						'Head in the Ceiling Fan',
 						'Murder Your Memory'
 					].includes(d.name)
-						? 1
-						: 0.5
+						? color(d.album)
+						: d3.rgb(color(d.album)).darker(1.5).toString()
 				)
 		}
 
@@ -427,18 +427,149 @@ function ready([tracks, album]) {
 				.transition()
 				.duration(500)
 				.attr('y', (d) => y(d.uri))
-				// .transition()
-				// .delay((d) => y.domain().indexOf(d.uri) * 15)
 				.attr('width', (d) => x(d.features[xColumn] * 100))
+				.style('fill', (d) =>
+					[
+						'Your Pain Is Mine Now',
+						'Head in the Ceiling Fan',
+						'Murder Your Memory'
+					].includes(d.name)
+						? color(d.album)
+						: d3.rgb(color(d.album)).darker(1.5).toString()
+				)
+		}
+
+		function track4() {
+			const xColumn = 'valence'
+			x.domain([0, 80])
+			xAxisTicks = [0, 40, 80]
+			axisOptions
+				.tickValues(xAxisTicks)
+				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
+
+			if (previousCard === 8) {
+				tracksVis.select('g.x-axis').transition().duration(500).call(xAxis)
+			} else {
+				tracksVis.select('g.x-axis').attr('opacity', 0).call(xAxis) // Add the new.
+				tracksVis.select('g.x-axis').transition().attr('opacity', 1) // Fade`-in the new.
+			}
+
+			tracksVis
+				.selectAll('rect.track')
+				.transition()
+				.duration(500)
+				.attr('y', (d) => y(d.uri))
+				.attr('width', (d) => x(d.features[xColumn] * 100))
+				.style('fill', (d) => color(d.album))
+
+			// const valenceAverages = d3.rollup(
+			// 	tracks.filter((d) => !['Face Ghost', "Flood of '72"].includes(d.album)),
+			// 	(v) => d3.mean(v.map((e) => e.features[xColumn])) * 100,
+			// 	(d) => d.album
+			// )
+
+			// const grouped = d3.group(
+			// 	tracks.filter((d) => !['Face Ghost', "Flood of '72"].includes(d.album)),
+			// 	(d) => d.album
+			// )
+
+			// console.log(grouped)
+
+			// tracksVis
+			// 	.selectAll('line.albumValence')
+			// 	.data(grouped)
+			// 	.join('line')
+			// 	.attr('class', 'albumValence')
+			// 	.attr('x1', (d) => x(valenceAverages.get(d[0])))
+			// 	.attr('x2', (d) => x(valenceAverages.get(d[0])))
+			// 	.attr('y1', (d) => y(d[1][0].uri))
+			// 	.attr('y2', (d) => y(d[1][d[1].length - 1].uri) + y.bandwidth())
+			// 	.attr('stroke-width', '15px')
+			// 	.attr('stroke', (d) => d3.rgb(color(d[0])).brighter(1).toString())
+		}
+		function track5() {
+			thisAlbum = [...tracks].filter((d) => d.album === 'Floral Green')
+			const contours = contour(thisAlbum)
+			const colorScale = d3
+				.scaleOrdinal()
+				.domain(contours.map((d) => d.value))
+				.range(
+					d3.quantize(linearColorScale, contours.map((d) => d.value).length)
+				)
+			if (previousCard === 9) {
+				const contour_g = contourVis
+					.append('g')
+					.attr('fill', 'none')
+					.selectAll('.contour')
+					.data(contours)
+					.join('g')
+				contour_g
+					.append('path')
+					.attr('class', 'contour')
+					.attr('d', d3.geoPath())
+					.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
+					.style('stroke', 'black')
+					.attr('fill', (d) => colorScale(d.value))
+			} else {
+				d3.selectAll('.contour').transition().attr('opacity', 0)
+
+				d3.selectAll('.contour')
+					.data(contours)
+					.attr('opacity', 0)
+					.attr('d', d3.geoPath())
+					.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
+					.style('stroke', 'black')
+					.attr('fill', (d) => colorScale(d.value))
+					.transition()
+					.attr('opacity', 1)
+			}
+
+			// axisOptions
+			// 	// .tickValues(xAxisTicks) // xAxisTicks = [0, 50, 100]
+			// 	.ticks(2)
+			// 	.tickFormat((x, i) => (i === 0 ? x + 'bpm' + xColumn : x + ''))
+
+			// contourVis
+			// 	.selectAll('circle.track')
+			// 	.data(thisAlbum)
+			// 	.join('circle')
+			// 	.attr('r', y.bandwidth() / 2)
+			// 	.style('fill', 'white')
+			// 	.attr('cx', (d) => x5(d.features[xColumn]))
+			// 	.attr('cy', (d) => y5(d.features[yColumn]))
+		}
+		function track6() {
+			thisAlbum = [...tracks].filter((d) => d.album === 'Hyperview')
+			const contours = contour(thisAlbum)
+			const colorScale = d3
+				.scaleOrdinal()
+				.domain(contours.map((d) => d.value))
+				.range(
+					d3.quantize(linearColorScale, contours.map((d) => d.value).length)
+				)
+
+			d3.selectAll('.contour').transition().attr('opacity', 0)
+
+			d3.selectAll('.contour')
+				.data(contours)
+				.attr('opacity', 0)
+				.attr('d', d3.geoPath())
+				.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
+				.style('stroke', 'black')
+				.attr('fill', (d) => colorScale(d.value))
+				.transition()
+				.attr('opacity', 1)
 		}
 
 		if (cardNames[currentCard].id === 'card-4.0') track1()
 		if (cardNames[currentCard].id === 'card-4.1') track2()
 		if (cardNames[currentCard].id === 'card-4.2') track3()
+		if (cardNames[currentCard].id === 'card-4.3') track4()
+		if (cardNames[currentCard].id === 'card-5.0') track5()
+		if (cardNames[currentCard].id === 'card-5.1') track6()
 	}
 
 	updateCard('none')
-
 	d3.select('#touch')
 		.selectAll('div')
 		.on('click', function () {
@@ -448,10 +579,8 @@ function ready([tracks, album]) {
 	document.onkeydown = checkKey
 	function checkKey(e) {
 		e = e || window.event
-		if (e.key === 'ArrowLeft') {
-			if (currentCard > -1) updateCard('left')
-		} else if (e.key == 'ArrowRight') {
-			if (currentCard < cardNames.length - 1) updateCard('right')
-		}
+		if (e.key === 'ArrowLeft' && currentCard > -1) updateCard('left')
+		else if (e.key == 'ArrowRight' && currentCard < cardNames.length - 1)
+			updateCard('right')
 	}
 }

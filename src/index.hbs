@@ -38,7 +38,6 @@ analytics: ""
 			</div>
 		</div>
 		<div class='part' id='explainer'>
-			{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
 			<p class='audioWarning'>plug in your headphones and turn that volume up, this bad boy has audio</p>
 			<div class="left tapExplainer">
 				<p>👈👈 Tap to go back</p>
@@ -55,7 +54,6 @@ analytics: ""
 			<div class='background-image center'>
 				<img src='https://i.scdn.co/image/f655f973e8e6ac3b8e556d1dbc11aac05d19a2b4'/>
 			</div>
-			<p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p>
 			<div class='well center introText alignLeft'>
 				<h1>This is Title Fight</h1>
 				<p>They're not a band anymore, but they're still my favorite. I listen to their music every day, and Spotify tells me I'm not alone, with at least 211k other people listening to them every month.</p>
@@ -67,7 +65,6 @@ analytics: ""
 	{{!-- {{> story/card-3 }} --}}
 	<div id='card-3' class='card center'>
 		<div class='content'>
-			<p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p>
 			<div class='part center'>
 				<div class='whitebg well albumExplainer'>
 					<p>Title Fight has released three full-length albums, a compilation album, an EP and two singles. With each release the band drifted from its hardcore punk roots to a more mellow and shoegaze-y sound.</p>
@@ -118,22 +115,51 @@ analytics: ""
 	{{!-- {{> story/card-4 }} --}}
 	<div id='card-4' class='card center'>
 		<div class='content'>
-			{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
-			<p class='nowPlaying'>🎶 Your Pain Is Mine Now from Hyperview 🎶</p>
 			<div id='scatterTracks'><svg></svg></div>
 			<div class='part center well'>
-				<p class='whitebg'>These are the 51 songs that Title Fight released, from most recent up top to their first singles at the bottom. Let's dig into how their music has changed.</p>
+				<p class='whitebg'>These are the 51 songs that Title Fight released, from most recent up top to their first singles at the bottom. Let's dig into how the music has changed and why Title Fight deserved better.</p>
 			</div>
 			<div class='part center well'>
-				<p class='whitebg'>Fans still closely listen to the singles like "Your Pain Is Mine Now", "Murder Your Memory" and "Head in the Ceiling Fan". Altogether, Hyperview has the most popular songs. Fans have come around to the sound, but it was too late.</p>
+				<p class='whitebg'>Spotify listeners keep smashing the play button on tracks like "Your Pain Is Mine Now", "Murder Your Memory" and "Head in the Ceiling Fan".</p>
+			</div>
+			<div class='part center well'>
+				<p class='whitebg'>These tracks have significantly lower energy than the rest of Title Fight's discography. Years later, fans have come around to the band's final form.</p>
+			</div>
+			<div class='part center well'>
+				<p class='whitebg'>Sonically, Hyperview was altogether more sorrowful compared to past releases. A few tracks from Floral Green Spotify's valence measurement, which charts how cheery a song sounds, backs up the claim.</p>
 			</div>
 		</div>
 	</div>
 
-	<div id='card-5' class='card center'>
-		{{!-- <p class='nowPlaying'>🎶 Secret Society from Floral Green 🎶</p> --}}
-		<div class='content'>
-			<h1 class='center'>The end</h1>
+<div id='card-5' class='card center'>
+	<div class='content'>
+		<div id='contourTracks'><svg></svg></div>
+		<div class='part center well'>
+			<p class='whitebg'>These are the 51 songs that Title Fight released, from most recent up top to their first singles at the bottom. Let's dig into how the music has changed and why Title Fight deserved better.</p>
+		</div>
+		<div class='part center well'>
+			<p class='whitebg'>Spotify listeners keep smashing the play button on tracks like "Your Pain Is Mine Now", "Murder Your Memory" and "Head in the Ceiling Fan".</p>
+		</div>
+		<div class='part center well'>
+			<p class='whitebg'>These tracks have significantly lower energy than the rest of Title Fight's discography. Years later, fans have come around to the band's final form.</p>
+		</div>
+		<div class='part center well'>
+			<p class='whitebg'>Sonically, Hyperview was altogether more sorrowful compared to past releases. A few tracks from Floral Green Spotify's valence measurement, which charts how cheery a song sounds, backs up the claim.</p>
+		</div>
+	</div>
+</div>
+
+	<div id='card-end' class='card center'>
+		<div class='content well'>
+			<div>
+				<h1>The End</h1>
+				<div>
+					<h2>How this was made</h2>
+					<p>Song popularity and feature data comes from Spotify's API. I pulled artist, track and album data using Python. The site is built using the Handlebars templating system and D3.js for most charts.</p>
+				</div>
+			<div class="left tapExplainer">
+				<p>👈👈 Tap to go back</p>
+			</div>
 		</div>
 	</div>
 </section>

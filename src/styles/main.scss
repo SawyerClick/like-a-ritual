@@ -462,6 +462,45 @@ body {
           }
         }
       }
+      #card-5 {
+        background-color: #161e29;
+        #scatterTracks {
+          position: absolute;
+          overflow: visible;
+          right: 0;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          svg {
+            overflow: visible;
+          }
+        }
+      }
+      #card-end {
+        h1 {
+          font-size: 2.5rem;
+          margin-bottom: 2.5rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+          font-weight: 800;
+        }
+        .tapExplainer {
+          width: 100vw;
+          p {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            width: 100vw;
+            font-size: 1.15rem;
+            color: $white;
+            text-align: left;
+          }
+        }
+      }
     }
   }
 }
@@ -505,7 +544,13 @@ body {
   background-color: $white;
   color: $black;
   padding: 1rem;
-  p {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $black;
   }
 }
@@ -527,8 +572,12 @@ body {
     opacity: 0;
   }
   .tick {
+    &:first-of-type line {
+      stroke: transparent;
+    }
     line {
-      fill: $white;
+      stroke: $black;
+      stroke-width: 1.5px;
     }
     text {
       fill: $white;
@@ -538,7 +587,8 @@ body {
   }
 }
 
-text.track {
+text.track,
+text.trackWhite {
   font-family: $body;
   // font-size: 12px;
   alignment-baseline: middle;
@@ -722,40 +772,3 @@ text.track {
     }
   }
 }
-
-// // https://codepen.io/moshfequr9/pen/gjqXWP
-// .row {
-//   display: flex;
-//   flex-wrap: wrap;
-//   padding: 0 4px;
-//   max-width: 1000px;
-//   margin: 0 auto;
-// }
-
-// /* Create four equal columns that sits next to each other */
-// .column {
-//   flex: 25%;
-//   max-width: 25%;
-//   padding: 0 4px;
-// }
-
-// .column img {
-//   margin-top: 8px;
-//   vertical-align: middle;
-// }
-
-// /* Responsive layout - makes a two column-layout instead of four columns */
-// @media (max-width: 800px) {
-//   .column {
-//     flex: 50%;
-//     max-width: 50%;
-//   }
-// }
-
-// /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-// @media (max-width: 600px) {
-//   .column {
-//     flex: 100%;
-//     max-width: 100%;
-//   }
-// }
