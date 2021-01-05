@@ -110,6 +110,12 @@ video {
   // overflow: hidden;
 }
 
+a {
+  &:hover {
+    font-weight: bold;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -142,37 +148,45 @@ body {
   font-family: 'Tiempos Text Web', Georgia, Times, serif;
   font-size: 16px;
   overflow: hidden;
+  // .part {
+  //   position: absolute;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   top: 0;
+  // }
   #content {
     width: 100%;
     height: 100%;
     // overflow: hidden;
-    #touch {
-      height: 100%;
-      width: 100%;
+    #leftTouch {
       position: absolute;
-      top: 0;
       left: 0;
-      pointer-events: all;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      .left {
-        position: absolute;
-        left: 0;
-        width: 15%;
-        height: 100%;
-      }
-      .right {
-        position: absolute;
-        right: 0;
-        width: 15%;
-        height: 100%;
-      }
+      top: 0;
+      width: 15%;
+      height: 100vh;
+      z-index: 1;
+      // background: hsla(0, 0, 0, 0.2);
+    }
+    #rightTouch {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 15%;
+      height: 100vh;
+      z-index: 1;
+      // background: hsla(0, 0, 0, 0.2);
     }
     #story {
-      height: 100%;
-      width: 100%;
-      pointer-events: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      // pointer-events: none;
+      z-index: -1;
       .card {
         height: 100%;
         width: 100%;
@@ -181,15 +195,13 @@ body {
         align-items: center;
         position: absolute;
         visibility: hidden;
-        pointer-events: none;
-        z-index: 2;
+        // pointer-events: none;
         box-sizing: border-box;
         overflow: hidden;
         &.visible {
           visibility: visible;
           // display: flex;
           opacity: 1;
-          z-index: 1;
         }
         .content {
           display: block;
@@ -197,6 +209,7 @@ body {
       }
       #card-1 {
         height: 100%;
+        background-color: hsla(202, 50%, 25%, 0.4);
         .background {
           background: url('https://24.media.tumblr.com/4093d3a095a528254a2bb6d025562ecf/tumblr_mhczzi31go1qcc2wao1_500.gif')
             repeat fixed center;
@@ -270,8 +283,8 @@ body {
             background-color: $navy;
             padding: 15px;
             border-radius: 10px;
-            -webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.35);
-            box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.35);
+            -webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+            box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
             letter-spacing: 0.2rem;
             margin: 3rem auto 0;
           }
@@ -300,6 +313,8 @@ body {
             border-radius: 1rem;
             padding: 2rem 2rem;
             font-size: 1.3rem;
+            -webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+            box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
           }
           .tapExplainer p {
             position: absolute;
@@ -340,7 +355,7 @@ body {
             right: 0rem;
             top: 0;
             bottom: 0;
-            z-index: -1;
+            z-index: auto;
             text-align: center;
             display: flex;
             flex-wrap: wrap;
@@ -447,23 +462,34 @@ body {
       #card-4 {
         background-color: $black;
         #scatterTracks {
+          pointer-events: all;
           position: absolute;
           overflow: visible;
-          // display: none;
           right: 0;
           left: 0;
           top: 0;
           bottom: 0;
           width: 100%;
           height: 100%;
-          z-index: -1;
+          z-index: 1;
           svg {
             overflow: visible;
+            text {
+              pointer-events: none;
+            }
           }
+        }
+        .part {
+          z-index: 1;
+          position: absolute;
+          left: 0;
+          right: 0;
+          // top: 0;
+          // bottom: 0;
         }
       }
       #card-5 {
-        background-color: #161e29;
+        background-color: hsla(215, 30%, 12%, 1);
         #scatterTracks {
           position: absolute;
           overflow: visible;
@@ -569,7 +595,7 @@ body {
 
 .x-axis {
   .domain {
-    opacity: 0;
+    display: none;
   }
   .tick {
     &:first-of-type line {
@@ -677,6 +703,7 @@ text.trackWhite {
               right: 0;
               bottom: 0;
               left: 0;
+              z-index: auto;
               img {
                 object-fit: cover;
                 width: 100vw;

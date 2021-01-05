@@ -15,15 +15,10 @@ analytics: ""
 ---
 {{!< default}}
 
-<section class="" id="touch">
-	<div class="left">
-	</div>
-	<div class="right">
-	</div>
-</section>
+<div id="leftTouch"></div>
+<div id="rightTouch"></div>
 
 <section class="" id="story">
-
 	{{!-- {{> story/card-1 }} --}}
 	<div id='card-1' class='card center'>
 		<div class='part'>
@@ -40,10 +35,10 @@ analytics: ""
 		<div class='part' id='explainer'>
 			<p class='audioWarning'>plug in your headphones and turn that volume up, this bad boy has audio</p>
 			<div class="left tapExplainer">
-				<p>👈👈 Tap to go back</p>
+				<p>👈👈 Tap or ◀ key to go back</p>
 			</div>
 			<div class="right tapExplainer">
-				<p>Tap to go forward 👉👉</p>
+				<p>Tap or ▶ key to go forward 👉👉</p>
 			</div>
 		</div>
 	</div>
@@ -117,7 +112,7 @@ analytics: ""
 		<div class='content'>
 			<div id='scatterTracks'><svg></svg></div>
 			<div class='part center well'>
-				<p class='whitebg'>These are the 51 songs that Title Fight released, from most recent up top to their first singles at the bottom. Let's dig into how the music has changed and why Title Fight deserved better.</p>
+				<p class='whitebg'><span style='text-align:center;color:black;display:block;'>👆 Tap on a bar to listen to a snippet 👆</span><br>These are the 51 songs that Title Fight released, from Hyperview up top to their first singles at the bottom. Let's dig into how the music has changed and why Title Fight deserved better.</p>
 			</div>
 			<div class='part center well'>
 				<p class='whitebg'>Spotify listeners keep smashing the play button on tracks like "Your Pain Is Mine Now", "Murder Your Memory" and "Head in the Ceiling Fan".</p>
@@ -155,10 +150,10 @@ analytics: ""
 				<h1>The End</h1>
 				<div>
 					<h2>How this was made</h2>
-					<p>Song popularity and feature data comes from Spotify's API. I pulled artist, track and album data using Python. The site is built using the Handlebars templating system and D3.js for most charts.</p>
+					<p>Song popularity and feature data comes from Spotify's API. Song preview tracks and album art is pulled from the same API that contains links to the images and previews on Spotify's servers. I pulled artist, track and album data using Python. The site is built using the Handlebars templating system and D3.js for most charts. Inspired by my love for Title Fight and The Pudding's dive into whether <a href='https://pudding.cool/2019/08/register/' target='_blank'>men are singing higher in pop music nowadays</a>.</p>
 				</div>
 			<div class="left tapExplainer">
-				<p>👈👈 Tap to go back</p>
+				<p>👈👈 Tap or ⬅ key to go back</p>
 			</div>
 		</div>
 	</div>

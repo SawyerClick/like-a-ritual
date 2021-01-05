@@ -13,13 +13,6 @@ function ready([tracks, album, cardNames]) {
 	console.log(tracks)
 	console.log(album)
 
-	// no one stays at the top forever | d948c819e0f4dfc69ca1d84bfe1d01393ca3c4e2
-	// secret society | e61375ad17705dc265890abdae911eade0a33435
-	// Frown | 80e735c8e1c3e951afd64567e29e96c5a3a24c0a
-	// murder your memory | 693ffd35a748011ecf51684b118de8f2126f5a4c
-	// head in the ceiling fan | bc4b7cc516cf570255256e64c63c5addfca21a0f
-	// your pain is mine now |
-
 	const cardSequence = null
 	let currentId = 'intro'
 	let currentCard = 0
@@ -29,11 +22,11 @@ function ready([tracks, album, cardNames]) {
 	let lastAudio = 'null'
 	const noiseArray = []
 	let axis = null
+	let activeSong
 
 	currentId = cardNames[currentCard].card
 
 	function stopLastAudio() {
-		// console.log('stop last audio')
 		if (noiseArray.length > 0) {
 			for (const noise in noiseArray) {
 				noiseArray[noise].stop()
@@ -42,12 +35,10 @@ function ready([tracks, album, cardNames]) {
 	}
 
 	window.onblur = function () {
-		// console.log('blurring')
 		stopLastAudio()
 	}
 
 	function playSound() {
-		// console.log('playing sound', cardNames[currentCard].audio)
 		const newSound = new Howl({
 			src: [
 				'https://p.scdn.co/mp3-preview/' + cardNames[currentCard].audio + '.mp3'
@@ -55,6 +46,14 @@ function ready([tracks, album, cardNames]) {
 			volume: 0.8,
 			loop: true
 		})
+		activeSong = cardNames[currentCard].audio
+		d3.selectAll('rect.track')
+			.style('stroke', (d) =>
+				activeSong === d.preview_url.split('mp3-preview/')[1].split('?')[0]
+					? 'white'
+					: 'none'
+			)
+			.style('stroke-width', '2px')
 		stopLastAudio()
 		newSound.play()
 		noiseArray.push(newSound)
@@ -69,14 +68,14 @@ function ready([tracks, album, cardNames]) {
 	const svgHeight = svgContainer.offsetHeight
 	const width = svgWidth - margin.right - margin.left
 	const height = svgHeight - margin.top - margin.bottom
-	const tracksVis = d3
+	const card4 = d3
 		.select('#scatterTracks svg')
 		.attr('width', svgWidth)
 		.attr('height', svgHeight)
 		.append('g')
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-	const contourVis = d3
+	const card5 = d3
 		.select('#contourTracks svg')
 		.attr('width', svgWidth)
 		.attr('height', svgHeight)
@@ -105,8 +104,8 @@ function ready([tracks, album, cardNames]) {
 		])
 
 	//  setting up contour
-	const xContourColumn = 'tempo'
-	const yContourColumn = 'liveness'
+	const x5Column = 'mode'
+	const y5Column = 'key'
 	const colors = [
 		'#e5dfcb',
 		'#c8c1a3',
@@ -117,21 +116,14 @@ function ready([tracks, album, cardNames]) {
 		'#26364a',
 		'#161e29'
 	]
-	const linearColorScale = d3
+	const y5 = d3
 		.scaleLinear()
-		.domain(d3.range(0, 1, 1 / colors.length))
-		.range(colors.reverse())
-		.interpolate(d3.interpolateLab)
-	const yContour = d3.scaleLinear().domain([0, 1]).range([height, 0])
-	const xContour = d3
+		.domain(d3.extent(tracks, (d) => d.features[y5Column]))
+		.range([height, 0])
+	const x5 = d3
 		.scaleLinear()
-		.domain(d3.extent(tracks, (d) => d.features[xContourColumn]))
+		.domain(d3.extent(tracks, (d) => d.features[x5Column]))
 		.range([0, width])
-	const contour = d3
-		.contourDensity()
-		.x((d) => xContour(d.features[xContourColumn]))
-		.y((d) => yContour(d.features[yContourColumn]))
-		.size([width, height])
 
 	d3.selectAll('.album')
 		.style('background-color', function (d) {
@@ -204,38 +196,23 @@ function ready([tracks, album, cardNames]) {
 		}
 
 		if (currentCard === 0) {
-			d3.select('#touch .left').style('width', '0%')
-			d3.select('#touch .right').style('width', '100%')
+			d3.select('#leftTouch').style('width', '0%')
+			d3.select('#rightTouch').style('width', '100%')
 		} else if (currentCard === cardNames.length - 1) {
-			d3.select('#touch .right').style('width', '0%')
-			d3.select('#touch .left').style('width', '100%')
+			d3.select('#rightTouch').style('width', '0px')
+			d3.select('#leftTouch').style('width', '75px')
 		} else {
 			if (window.innerWidth < 450) {
-				d3.selectAll('#touch div').style('width', '50%')
+				d3.selectAll('#rightTouch,#leftTouch').style('width', '50%')
 			} else {
-				d3.select('#touch .left').style('width', '32%')
-				d3.select('#touch .right').style('width', '68%')
+				d3.select('#leftTouch').style('width', '75px')
+				d3.select('#rightTouch').style('width', '75px')
 			}
 		}
 
 		const id = cardNames[currentCard].id
 		const idCount = +id.split('.')[1]
 		currentId = cardNames[currentCard].card
-		if (currentCard !== 0) {
-			if (
-				cardNames[currentCard].audio == 'none' ||
-				lastAudio != cardNames[currentCard].audio
-			) {
-				stopLastAudio()
-			}
-			if (
-				cardNames[currentCard].audio != 'none' &&
-				lastAudio != cardNames[currentCard].audio
-			) {
-				playSound()
-			}
-		}
-
 		const thisCard = d3.select('#' + currentId)
 		const thisNowPlaying = thisCard.select('.nowPlaying')
 		let nowPlayingText = null
@@ -281,16 +258,19 @@ function ready([tracks, album, cardNames]) {
 					}
 				}
 			})
-			.style('display', (d, i) => {
-				if (cardNames[currentCard].card === 'card-4') {
-					if (i == idCount) {
-						return 'block'
-					} else {
-						return 'none'
-					}
+			.style('z-index', (d, i) => (i == idCount ? '2' : '1'))
+
+		d3.selectAll('.card')
+			.style('pointer-events', function (d, i) {
+				return d3.select(this).attr('id') == currentId ? 'all' : 'none'
+			})
+			.style('display', function (d, i) {
+				if (d3.select(this).attr('id') === 'card-3') {
+					return 'flex'
+				} else {
+					return d3.select(this).attr('id') == currentId ? 'flex' : 'none'
 				}
 			})
-			.style('z-index', (d, i) => (i == idCount ? '2' : '-1'))
 
 		if (currentCard === 5) {
 			d3.select('#card-3 .tweetEmbed').style('opacity', 1)
@@ -321,7 +301,7 @@ function ready([tracks, album, cardNames]) {
 				return thisAlbumNode
 			}
 
-			tracksVis
+			card4
 				.selectAll('rect.track')
 				.data(tracks)
 				.join('rect')
@@ -349,7 +329,25 @@ function ready([tracks, album, cardNames]) {
 				.attr('x', 0)
 				.attr('height', y.bandwidth())
 
-			tracksVis
+			card4.selectAll('rect.track').on('click', function (event, d) {
+				activeSong = d.preview_url.split('mp3-preview/')[1].split('?')[0]
+				const newSound = new Howl({
+					src: ['https://p.scdn.co/mp3-preview/' + activeSong + '.mp3'],
+					volume: 0.8,
+					loop: true
+				})
+				stopLastAudio()
+				newSound.play()
+				noiseArray.push(newSound)
+
+				d3.select('#card-4')
+					.select('.nowPlaying')
+					.text(`🎶 ${d.name} from ${d.album} 🎶`)
+				card4.selectAll('rect.track').style('stroke', 'none')
+				d3.select(this).style('stroke', 'white').style('stroke-width', '2px')
+			})
+
+			card4
 				.selectAll('text.track')
 				.data(tracks)
 				.join('text')
@@ -366,9 +364,9 @@ function ready([tracks, album, cardNames]) {
 				.attr('opacity', 1)
 
 			if (axis === null) {
-				axis = tracksVis.append('g').call(xAxis).style('opacity', 0)
+				axis = card4.append('g').call(xAxis).style('opacity', 0)
 
-				tracksVis
+				card4
 					.select('g.x-axis text:first-of-type')
 					.attr('dx', '-4.5px')
 					.attr('text-anchor', 'start')
@@ -395,7 +393,7 @@ function ready([tracks, album, cardNames]) {
 				.call((g) => g.selectAll('.domain').remove())
 				.style('opacity', 1)
 
-			tracksVis
+			card4
 				.selectAll('rect.track')
 				.transition()
 				.duration(500)
@@ -420,9 +418,9 @@ function ready([tracks, album, cardNames]) {
 				.tickValues(xAxisTicks)
 				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
 
-			tracksVis.select('g.x-axis').transition().duration(500).call(xAxis)
+			card4.select('g.x-axis').transition().duration(500).call(xAxis)
 
-			tracksVis
+			card4
 				.selectAll('rect.track')
 				.transition()
 				.duration(500)
@@ -448,13 +446,13 @@ function ready([tracks, album, cardNames]) {
 				.tickFormat((x, i) => (i === 0 ? x + '% ' + xColumn : x + '%'))
 
 			if (previousCard === 8) {
-				tracksVis.select('g.x-axis').transition().duration(500).call(xAxis)
+				card4.select('g.x-axis').transition().duration(500).call(xAxis)
 			} else {
-				tracksVis.select('g.x-axis').attr('opacity', 0).call(xAxis) // Add the new.
-				tracksVis.select('g.x-axis').transition().attr('opacity', 1) // Fade`-in the new.
+				card4.select('g.x-axis').attr('opacity', 0).call(xAxis) // Add the new.
+				card4.select('g.x-axis').transition().attr('opacity', 1) // Fade`-in the new.
 			}
 
-			tracksVis
+			card4
 				.selectAll('rect.track')
 				.transition()
 				.duration(500)
@@ -475,7 +473,7 @@ function ready([tracks, album, cardNames]) {
 
 			// console.log(grouped)
 
-			// tracksVis
+			// card4
 			// 	.selectAll('line.albumValence')
 			// 	.data(grouped)
 			// 	.join('line')
@@ -488,93 +486,67 @@ function ready([tracks, album, cardNames]) {
 			// 	.attr('stroke', (d) => d3.rgb(color(d[0])).brighter(1).toString())
 		}
 		function track5() {
-			thisAlbum = [...tracks].filter((d) => d.album === 'Floral Green')
-			const contours = contour(thisAlbum)
-			const colorScale = d3
-				.scaleOrdinal()
-				.domain(contours.map((d) => d.value))
-				.range(
-					d3.quantize(linearColorScale, contours.map((d) => d.value).length)
+			// add this back to cardNames.json
+			// {
+			//   "id": "card-5.0",
+			//   "card": "card-5",
+			//   "audio": "94c4f8a738c0a901b587ac9e47b2b55946fb2047",
+			//   "nowPlaying": "Lefty from Floral Green (my fav)"
+			// },
+			// {
+			//   "id": "card-5.1",
+			//   "card": "card-5",
+			//   "audio": "94c4f8a738c0a901b587ac9e47b2b55946fb2047",
+			//   "nowPlaying": "Lefty from Floral Green (my fav)"
+			// },
+			card5
+				.selectAll('circle')
+				.data(tracks)
+				.join('circle')
+				.style('fill', 'white')
+				.attr('cx', (d) => x5(d.features[x5Column]))
+				.attr('cy', (d) => y5(d.features[y5Column]))
+				.transition()
+				.attr('r', (d) =>
+					d.album === 'Floral Green' ? y.bandwidth() : y.bandwidth() / 4
 				)
-			if (previousCard === 9) {
-				const contour_g = contourVis
-					.append('g')
-					.attr('fill', 'none')
-					.selectAll('.contour')
-					.data(contours)
-					.join('g')
-				contour_g
-					.append('path')
-					.attr('class', 'contour')
-					.attr('d', d3.geoPath())
-					.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
-					.style('stroke', 'black')
-					.attr('fill', (d) => colorScale(d.value))
-			} else {
-				d3.selectAll('.contour').transition().attr('opacity', 0)
-
-				d3.selectAll('.contour')
-					.data(contours)
-					.attr('opacity', 0)
-					.attr('d', d3.geoPath())
-					.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
-					.style('stroke', 'black')
-					.attr('fill', (d) => colorScale(d.value))
-					.transition()
-					.attr('opacity', 1)
-			}
-
-			// axisOptions
-			// 	// .tickValues(xAxisTicks) // xAxisTicks = [0, 50, 100]
-			// 	.ticks(2)
-			// 	.tickFormat((x, i) => (i === 0 ? x + 'bpm' + xColumn : x + ''))
-
-			// contourVis
-			// 	.selectAll('circle.track')
-			// 	.data(thisAlbum)
-			// 	.join('circle')
-			// 	.attr('r', y.bandwidth() / 2)
-			// 	.style('fill', 'white')
-			// 	.attr('cx', (d) => x5(d.features[xColumn]))
-			// 	.attr('cy', (d) => y5(d.features[yColumn]))
 		}
 		function track6() {
-			thisAlbum = [...tracks].filter((d) => d.album === 'Hyperview')
-			const contours = contour(thisAlbum)
-			const colorScale = d3
-				.scaleOrdinal()
-				.domain(contours.map((d) => d.value))
-				.range(
-					d3.quantize(linearColorScale, contours.map((d) => d.value).length)
-				)
-
-			d3.selectAll('.contour').transition().attr('opacity', 0)
-
-			d3.selectAll('.contour')
-				.data(contours)
-				.attr('opacity', 0)
-				.attr('d', d3.geoPath())
-				.attr('stroke-width', (d, i) => (i % 5 ? 0.25 : 1))
-				.style('stroke', 'black')
-				.attr('fill', (d) => colorScale(d.value))
+			card5
+				.selectAll('circle')
 				.transition()
-				.attr('opacity', 1)
+				.attr('r', (d) =>
+					d.album === 'Hyperview' ? y.bandwidth() : y.bandwidth() / 4
+				)
 		}
 
 		if (cardNames[currentCard].id === 'card-4.0') track1()
-		if (cardNames[currentCard].id === 'card-4.1') track2()
-		if (cardNames[currentCard].id === 'card-4.2') track3()
-		if (cardNames[currentCard].id === 'card-4.3') track4()
-		if (cardNames[currentCard].id === 'card-5.0') track5()
-		if (cardNames[currentCard].id === 'card-5.1') track6()
+		else if (cardNames[currentCard].id === 'card-4.1') track2()
+		else if (cardNames[currentCard].id === 'card-4.2') track3()
+		else if (cardNames[currentCard].id === 'card-4.3') track4()
+		else if (cardNames[currentCard].id === 'card-5.0') track5()
+		else if (cardNames[currentCard].id === 'card-5.1') track6()
+
+		if (currentCard !== 0) {
+			if (
+				cardNames[currentCard].audio == 'none' ||
+				activeSong != cardNames[currentCard].audio
+			) {
+				stopLastAudio()
+			}
+			if (
+				cardNames[currentCard].audio != 'none' &&
+				activeSong != cardNames[currentCard].audio
+			) {
+				playSound()
+			}
+		}
 	}
 
 	updateCard('none')
-	d3.select('#touch')
-		.selectAll('div')
-		.on('click', function () {
-			updateCard(d3.select(this).attr('class'))
-		})
+	d3.selectAll('#leftTouch,#rightTouch').on('click', function () {
+		updateCard(d3.select(this).attr('id').replace('Touch', ''))
+	})
 
 	document.onkeydown = checkKey
 	function checkKey(e) {
