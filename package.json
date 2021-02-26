@@ -1,23 +1,10 @@
 {
   "name": "sawhorse",
   "version": "1.0.2",
-  "description": "A sturdy base to build D3 projects on",
-  "main": "index.js",
   "scripts": {
-    "test": "testcafe chrome ./tests/acceptance/**  --app \"npm run start\"",
     "start": "parcel src/index.hbs --no-hmr --no-source-maps",
     "build": "parcel build src/index.hbs --out-dir docs --public-url . --no-source-maps"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/littlecolumns/sawhorse.git"
-  },
-  "author": "Jonathan Soma <jonathan.soma@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/littlecolumns/sawhorse/issues"
-  },
-  "homepage": "https://github.com/littlecolumns/sawhorse#readme",
   "devDependencies": {
     "acorn": "^7.4.1",
     "d3": "^6.3.1",

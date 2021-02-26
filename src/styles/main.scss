@@ -94,26 +94,26 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  color: hsla(0, 0%, 97%, 1);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	color: hsla(0, 0%, 97%, 1);
 }
 
 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  // hyphens: auto;
-  // overflow: hidden;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	// hyphens: auto;
+	// overflow: hidden;
 }
 
 a {
-  &:hover {
-    font-weight: bold;
-  }
+	&:hover {
+		font-weight: bold;
+	}
 }
 
 h1,
@@ -122,680 +122,716 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $header;
-  text-align: center;
+	font-family: $header;
+	text-align: center;
 }
 p {
-  font-family: $body;
-  font-size: 16px;
+	font-family: $body;
+	font-size: 16px;
 }
 
 h1 {
-  font-weight: 900;
-  font-size: 2rem;
-  line-height: 0.8;
-  padding-bottom: 0.8rem;
+	font-weight: 900;
+	font-size: 2rem;
+	line-height: 0.8;
+	padding-bottom: 0.8rem;
 }
 
 body {
-  -webkit-font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
-  font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: hsla(0, 0%, 0%, 0);
-  background-color: hsla(0, 0%, 16%, 1);
-  color: hsla(0, 0%, 97%, 1);
-  font-weight: 500;
-  font-family: 'Tiempos Text Web', Georgia, Times, serif;
-  font-size: 16px;
-  overflow: hidden;
-  // .part {
-  //   position: absolute;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   top: 0;
-  // }
-  #content {
-    width: 100%;
-    height: 100%;
-    // overflow: hidden;
-    #leftTouch {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 15%;
-      height: 100vh;
-      z-index: 1;
-      // background: hsla(0, 0, 0, 0.2);
-    }
-    #rightTouch {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 15%;
-      height: 100vh;
-      z-index: 1;
-      // background: hsla(0, 0, 0, 0.2);
-    }
-    #story {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      // pointer-events: none;
-      z-index: -1;
-      .card {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        visibility: hidden;
-        // pointer-events: none;
-        box-sizing: border-box;
-        overflow: hidden;
-        &.visible {
-          visibility: visible;
-          // display: flex;
-          opacity: 1;
-        }
-        .content {
-          display: block;
-        }
-      }
-      #card-1 {
-        height: 100%;
-        background-color: hsla(202, 50%, 25%, 0.4);
-        .background {
-          background: url('https://24.media.tumblr.com/4093d3a095a528254a2bb6d025562ecf/tumblr_mhczzi31go1qcc2wao1_500.gif')
-            repeat fixed center;
-          height: 100%;
-          width: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          opacity: 0.2;
-          overflow: hidden;
-          z-index: -1;
-        }
-        .headline {
-          text-align: center;
-          text-transform: uppercase;
-          z-index: 1;
-          height: 100%;
-          h2 {
-            font-size: 1.75rem;
-            font-weight: 500;
-            line-height: 1.2;
-            letter-spacing: 0.5rem;
-            max-width: 50%;
-            margin: 0 auto;
-            max-width: 450px;
-            font-family: $body;
-          }
-          h1 {
-            position: relative;
-            display: block;
-            font-size: max(15vw, 7rem);
-            letter-spacing: 0.5rem;
-            color: hsla(163, 16%, 91%, 1);
-            line-height: 1.4;
-            padding-bottom: 0;
-            -webkit-background-clip: text;
-            text-shadow: -1px -1px 0 $green, 1px -1px 0 $green,
-              -1px 1px 0 $green, 1px 1px 0 $green, 1px 0px 0px $navy,
-              0px 1px 0px $navy, 2px 1px 0px $navy, 1px 2px 0px $navy,
-              3px 2px 0px $navy, 2px 3px 0px $navy, 4px 3px 0px $navy,
-              3px 4px 0px $navy, 5px 4px 0px $navy, 3px 5px 0px $green,
-              6px 5px 0px $green, -1px 2px 0 $black, 0 3px 0 $green,
-              1px 4px 0 $green, 2px 5px 0px $green, 2px -1px 0 $green,
-              3px 0 0 $green, 4px 1px 0 $green, 5px 2px 0px $green,
-              6px 3px 0 $green, 7px 4px 0 $green, 7px 7px 15px $green;
-            &:first-of-type {
-              margin-top: -8%;
-            }
-            &:last-of-type {
-              margin-top: -12%;
-              margin-bottom: -4%;
-            }
-          }
-          h2.byline {
-            margin-top: 1rem;
-            font-weight: 400;
-            font-size: 1.25rem;
-            letter-spacing: 0.3rem;
-          }
-          h2.date {
-            margin-top: 0rem;
-            font-weight: 400;
-            font-size: 1.25rem;
-            letter-spacing: 0.3rem;
-          }
-          h2.button {
-            position: static;
-            font-family: $body;
-            background-color: $navy;
-            padding: 15px;
-            border-radius: 10px;
-            -webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
-            box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
-            letter-spacing: 0.2rem;
-            margin: 3rem auto 0;
-          }
-        }
-        #explainer {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          opacity: 0;
-          box-sizing: border-box;
-          .audioWarning {
-            position: absolute;
-            bottom: 10%;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: $white;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: $black;
-            color: $white;
-            border-radius: 1rem;
-            padding: 2rem 2rem;
-            font-size: 1.3rem;
-            -webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
-            box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
-          }
-          .tapExplainer p {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            font-size: 1.15rem;
-            color: $white;
-          }
-          .left {
-            width: 50%;
-            bottom: 2rem;
-            position: relative;
-            text-align: left;
-            p {
-              left: 2rem;
-            }
-          }
-          .right {
-            width: 50%;
-            bottom: 2rem;
-            position: relative;
-            text-align: right;
-            p {
-              right: 2rem;
-            }
-          }
-        }
-      }
-      #card-2 {
-        background-color: $navy;
-        color: $black;
-        text-align: left;
-        .content {
-          padding-top: 10rem;
-          .background-image {
-            position: absolute;
-            left: 10vw;
-            right: 0rem;
-            top: 0;
-            bottom: 0;
-            z-index: auto;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            img {
-              text-align: center;
-            }
-          }
-          .introText {
-            background-color: white;
-            padding: 2rem 3rem;
-            position: absolute;
-            right: 0;
-            bottom: 5rem;
-            left: 0;
-            h1 {
-              font-size: 3rem;
-              text-align: left;
-              color: $black;
-            }
-            p {
-              margin: 0.75rem 0;
-              color: $black;
-            }
-          }
-          .secondText {
-            padding: 3rem 4rem;
-            margin-top: -1rem;
-            background: $white;
-            position: absolute;
-            z-index: 1;
-            p {
-              color: $black;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-      #card-3 {
-        background-color: $navy;
-        color: $black;
-        .part {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          height: 100%;
-          flex-wrap: nowrap;
-          .albumExplainer {
-            // margin-top: 5rem;
-            padding: 1rem;
-            margin: 1rem;
-            width: 100%;
-            max-width: 500px;
-            p {
-              font-size: 1rem;
-            }
-            .tweetEmbed {
-              margin-left: -1rem;
-            }
-          }
-          .albums {
-            text-align: center;
-            justify-content: center;
-            max-width: 700px;
-            margin-right: 1rem;
-            .album {
-              display: inline-block;
-              margin: 0.25em;
-              padding: 1rem;
-              color: $black;
-              width: max(15vw, 150px);
-              height: max(15vw, 150px);
-              max-height: 175px;
-              max-width: 175px;
-              border-radius: 1rem;
-              vertical-align: middle;
-              // border: 5px solid $navy;
-              box-sizing: border-box;
-              img {
-                width: 100%;
-                border-radius: 0.5rem;
-              }
-              p {
-                color: $black;
-                max-width: 100%;
-                font-size: max(1.4vw, 16px);
-                height: 100%;
-                span {
-                  color: $black;
-                  width: 100%;
-                  height: 0px;
-                }
-              }
-            }
-          }
-          h1 {
-            color: $black;
-          }
-        }
-      }
-      #card-4 {
-        background-color: $black;
-        #scatterTracks {
-          pointer-events: all;
-          position: absolute;
-          overflow: visible;
-          right: 0;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-          svg {
-            overflow: visible;
-            text {
-              pointer-events: none;
-            }
-          }
-        }
-        .part {
-          z-index: 1;
-          position: absolute;
-          left: 0;
-          right: 0;
-          // top: 0;
-          // bottom: 0;
-        }
-      }
-      #card-5 {
-        background-color: hsla(215, 30%, 12%, 1);
-        #scatterTracks {
-          position: absolute;
-          overflow: visible;
-          right: 0;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-          svg {
-            overflow: visible;
-          }
-        }
-      }
-      #card-end {
-        h1 {
-          font-size: 2.5rem;
-          margin-bottom: 2.5rem;
-        }
-        h2 {
-          font-size: 1.5rem;
-          font-weight: 800;
-        }
-        .tapExplainer {
-          width: 100vw;
-          p {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            width: 100vw;
-            font-size: 1.15rem;
-            color: $white;
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
+	-webkit-font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
+	font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: hsla(0, 0%, 0%, 0);
+	background-color: hsla(0, 0%, 16%, 1);
+	color: hsla(0, 0%, 97%, 1);
+	font-weight: 500;
+	font-family: 'Tiempos Text Web', Georgia, Times, serif;
+	font-size: 16px;
+	overflow: hidden;
+	// .part {
+	//   position: absolute;
+	//   left: 0;
+	//   right: 0;
+	//   bottom: 0;
+	//   top: 0;
+	// }
+	#content {
+		width: 100%;
+		height: 100%;
+		// overflow: hidden;
+		#leftTouch {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 15%;
+			height: 100vh;
+			z-index: 1;
+			// background: hsla(0, 0, 0, 0.2);
+		}
+		#rightTouch {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 15%;
+			height: 100vh;
+			z-index: 1;
+			// background: hsla(0, 0, 0, 0.2);
+		}
+		#story {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 100vh;
+			width: 100vw;
+			// pointer-events: none;
+			z-index: -1;
+			.card {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: absolute;
+				visibility: hidden;
+				// pointer-events: none;
+				box-sizing: border-box;
+				overflow: hidden;
+				&.visible {
+					visibility: visible;
+					// display: flex;
+					opacity: 1;
+				}
+				.content {
+					display: block;
+				}
+			}
+			#card-1 {
+				height: 100%;
+				background-color: hsla(202, 50%, 25%, 0.4);
+				.background {
+					background: url('https://24.media.tumblr.com/4093d3a095a528254a2bb6d025562ecf/tumblr_mhczzi31go1qcc2wao1_500.gif')
+						repeat fixed center;
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					opacity: 0.2;
+					overflow: hidden;
+					z-index: -1;
+				}
+				.headline {
+					text-align: center;
+					text-transform: uppercase;
+					z-index: 1;
+					height: 100%;
+					h2 {
+						font-size: 1.75rem;
+						font-weight: 500;
+						line-height: 1.2;
+						letter-spacing: 0.5rem;
+						max-width: 50%;
+						margin: 0 auto;
+						max-width: 450px;
+						font-family: $body;
+					}
+					h1 {
+						position: relative;
+						display: block;
+						font-size: max(15vw, 7rem);
+						letter-spacing: 0.5rem;
+						color: hsla(163, 16%, 91%, 1);
+						line-height: 1.4;
+						padding-bottom: 0;
+						-webkit-background-clip: text;
+						text-shadow: -1px -1px 0 $green, 1px -1px 0 $green,
+							-1px 1px 0 $green, 1px 1px 0 $green, 1px 0px 0px $navy,
+							0px 1px 0px $navy, 2px 1px 0px $navy, 1px 2px 0px $navy,
+							3px 2px 0px $navy, 2px 3px 0px $navy, 4px 3px 0px $navy,
+							3px 4px 0px $navy, 5px 4px 0px $navy, 3px 5px 0px $green,
+							6px 5px 0px $green, -1px 2px 0 $black, 0 3px 0 $green,
+							1px 4px 0 $green, 2px 5px 0px $green, 2px -1px 0 $green,
+							3px 0 0 $green, 4px 1px 0 $green, 5px 2px 0px $green,
+							6px 3px 0 $green, 7px 4px 0 $green, 7px 7px 15px $green;
+						&:first-of-type {
+							margin-top: -8%;
+						}
+						&:last-of-type {
+							margin-top: -12%;
+							margin-bottom: -4%;
+						}
+					}
+					h2.byline {
+						margin-top: 1rem;
+						font-weight: 400;
+						font-size: 1.25rem;
+						letter-spacing: 0.3rem;
+					}
+					h2.date {
+						margin-top: 0rem;
+						font-weight: 400;
+						font-size: 1.25rem;
+						letter-spacing: 0.3rem;
+					}
+					h2.button {
+						position: static;
+						font-family: $body;
+						background-color: $navy;
+						padding: 15px;
+						border-radius: 10px;
+						-webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+						box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+						letter-spacing: 0.2rem;
+						margin: 3rem auto 0;
+					}
+				}
+				#explainer {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					display: -webkit-box;
+					display: -ms-flexbox;
+					display: flex;
+					opacity: 0;
+					box-sizing: border-box;
+					.audioWarning {
+						position: absolute;
+						bottom: 10%;
+						left: 0;
+						right: 0;
+						text-align: center;
+						color: $white;
+						max-width: 500px;
+						margin: 0 auto;
+						text-align: center;
+						background-color: $black;
+						color: $white;
+						border-radius: 1rem;
+						padding: 2rem 2rem;
+						font-size: 1.3rem;
+						-webkit-box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+						box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.5);
+					}
+					.tapExplainer p {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						font-size: 1.15rem;
+						color: $white;
+					}
+					.left {
+						width: 50%;
+						bottom: 2rem;
+						position: relative;
+						text-align: left;
+						p {
+							left: 2rem;
+						}
+					}
+					.right {
+						width: 50%;
+						bottom: 2rem;
+						position: relative;
+						text-align: right;
+						p {
+							right: 2rem;
+						}
+					}
+				}
+			}
+			#card-2 {
+				background-color: $navy;
+				color: $black;
+				text-align: left;
+				.content {
+					padding-top: 10rem;
+					.background-image {
+						position: absolute;
+						left: 10vw;
+						right: 0rem;
+						top: 0;
+						bottom: 0;
+						z-index: auto;
+						text-align: center;
+						display: flex;
+						flex-wrap: wrap;
+						align-items: center;
+						justify-content: center;
+						img {
+							text-align: center;
+						}
+					}
+					.introText {
+						background-color: white;
+						padding: 2rem 3rem;
+						position: absolute;
+						right: 0;
+						bottom: 5rem;
+						left: 0;
+						h1 {
+							font-size: 3rem;
+							text-align: left;
+							color: $black;
+						}
+						p {
+							margin: 0.75rem 0;
+							color: $black;
+						}
+					}
+					.secondText {
+						padding: 3rem 4rem;
+						margin-top: -1rem;
+						background: $white;
+						position: absolute;
+						z-index: 1;
+						p {
+							color: $black;
+							font-size: 1rem;
+						}
+					}
+				}
+			}
+			#card-3 {
+				background-color: $navy;
+				color: $black;
+				.part {
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					height: 100%;
+					flex-wrap: nowrap;
+					.albumExplainer {
+						// margin-top: 5rem;
+						padding: 1rem;
+						margin: 1rem;
+						width: 100%;
+						max-width: 500px;
+						p {
+							font-size: 1rem;
+						}
+						.tweetEmbed {
+							margin-left: -1rem;
+						}
+					}
+					.albums {
+						text-align: center;
+						justify-content: center;
+						max-width: 700px;
+						margin-right: 1rem;
+						.album {
+							display: inline-block;
+							margin: 0.25em;
+							padding: 1rem;
+							color: $black;
+							width: max(15vw, 150px);
+							height: max(15vw, 150px);
+							max-height: 175px;
+							max-width: 175px;
+							border-radius: 1rem;
+							vertical-align: middle;
+							// border: 5px solid $navy;
+							box-sizing: border-box;
+							img {
+								width: 100%;
+								border-radius: 0.5rem;
+							}
+							p {
+								color: $black;
+								max-width: 100%;
+								font-size: max(1.4vw, 16px);
+								height: 100%;
+								span {
+									color: $black;
+									width: 100%;
+									height: 0px;
+								}
+							}
+						}
+					}
+					h1 {
+						color: $black;
+					}
+				}
+			}
+			#card-4 {
+				background-color: $black;
+				#scatterTracks {
+					pointer-events: all;
+					position: absolute;
+					overflow: visible;
+					right: 0;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					width: 100%;
+					height: 100%;
+					z-index: 1;
+					svg {
+						overflow: visible;
+						text {
+							pointer-events: none;
+						}
+					}
+				}
+				.part {
+					z-index: 1;
+					position: absolute;
+					left: 0;
+					right: 0;
+				}
+			}
+			#card-5 {
+				background-color: hsla(215, 30%, 12%, 1);
+				.part {
+					z-index: 1;
+					position: absolute;
+					left: 0;
+					right: 0;
+				}
+				#sentimentViz {
+					margin: 2.5rem auto;
+					position: absolute;
+					overflow: visible;
+					right: 0;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					width: 100%;
+					height: 90%;
+					// z-index: -1;
+					.chart5 {
+						// margin: 1rem auto;
+					}
+					h3 {
+						text-align: left;
+					}
+					svg {
+						overflow: visible;
+						circle {
+							opacity: 1;
+							// mix-blend-mode: multiply;
+							&:hover {
+								stroke-width: 2px;
+								stroke: white;
+							}
+						}
+					}
+				}
+			}
+			#card-end {
+				h1 {
+					font-size: 2.5rem;
+					margin-bottom: 2.5rem;
+				}
+				h2 {
+					font-size: 1.5rem;
+					font-weight: 800;
+				}
+				.tapExplainer {
+					width: 100vw;
+					p {
+						position: absolute;
+						bottom: 2rem;
+						left: 2rem;
+						width: 100vw;
+						font-size: 1.15rem;
+						color: $white;
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .alignLeft {
-  text-align: left;
-  justify-content: flex-start;
-  * {
-    text-align: left;
-  }
+	text-align: left;
+	justify-content: flex-start;
+	* {
+		text-align: left;
+	}
 }
 .alignRight {
-  text-align: right;
-  justify-content: flex-end;
-  * {
-    text-align: right;
-  }
+	text-align: right;
+	justify-content: flex-end;
+	* {
+		text-align: right;
+	}
 }
 .alignCenter {
-  text-align: center;
-  justify-content: center;
-  * {
-    text-align: center;
-  }
+	text-align: center;
+	justify-content: center;
+	* {
+		text-align: center;
+	}
 }
 
 .well {
-  width: 600px;
-  padding: 1rem;
-  margin: 0 auto;
+	width: 600px;
+	padding: 1rem;
+	margin: 0 auto;
 }
 
 .whitebg {
-  background-color: $white;
-  color: $black;
-  padding: 1rem;
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: $black;
-  }
+	background-color: $white;
+	color: $black;
+	padding: 1rem;
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: $black;
+	}
 }
 
 .nowPlaying {
-  position: absolute !important;
-  top: 1rem !important;
-  left: 1rem !important;
-  background-color: $white !important;
-  padding: 0.25rem 0.5rem !important;
-  font-size: 1rem !important;
-  color: $black !important;
-  width: auto !important;
-  height: auto !important;
+	box-sizing: border-box;
+	position: absolute !important;
+	top: 1rem !important;
+	left: 1rem !important;
+	background-color: $white !important;
+	padding: 0.25rem 0.5rem !important;
+	font-size: 1rem !important;
+	color: $black !important;
+	width: auto !important;
+	height: auto !important;
+	z-index: 1;
 }
 
 .x-axis {
-  .domain {
-    display: none;
-  }
-  .tick {
-    &:first-of-type line {
-      stroke: transparent;
-    }
-    line {
-      stroke: $black;
-      stroke-width: 1.5px;
-    }
-    text {
-      fill: $white;
-      font-family: $body;
-      font-size: 18px;
-    }
-  }
+	.domain {
+		display: none;
+	}
+	.tick {
+		&:first-of-type line {
+			stroke: transparent;
+		}
+		line {
+			stroke: $black;
+			stroke-width: 1.5px;
+		}
+		text {
+			fill: $white;
+			font-family: $body;
+			font-size: 18px;
+		}
+	}
 }
 
 text.track,
 text.trackWhite {
-  font-family: $body;
-  // font-size: 12px;
-  alignment-baseline: middle;
+	font-family: $body;
+	// font-size: 12px;
+	alignment-baseline: middle;
 }
 
 @media screen and (max-width: 600px) {
-  .well {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    width: 100%;
-  }
-  * {
-    font-size: 14px;
-  }
-  .nowPlaying {
-    display: none;
-  }
-  body {
-    #content {
-      #story {
-        #card-1 {
-          opacity: 1;
-          .headline {
-            margin-bottom: 2rem;
-            h2 {
-              font-size: 1.75rem;
-              letter-spacing: normal;
-              max-width: 275px;
-            }
-            h1 {
-              font-size: 5rem;
-              line-height: 1.6;
-            }
-            h2.byline {
-              font-size: 1.3rem;
-              letter-spacing: normal;
-            }
-            h2.button {
-              position: absolute;
-              bottom: 10%;
-              left: 0;
-              right: 0;
-              font-size: 1.15rem;
-              padding: 10px;
-              max-width: 300px;
-              line-height: 1.5;
-              width: 100%;
-            }
-          }
-          #explainer {
-            display: block;
-            .audioWarning {
-              display: none;
-            }
-            .left,
-            .right {
-              width: 100% !important;
-              position: absolute;
-              height: 100%;
-              bottom: 2rem;
-              .tapExplainer p {
-                width: 100%;
-                hyphens: auto;
-                padding: 0 1rem;
-                left: 0;
-                right: 0;
-                font-size: 1rem;
-              }
-            }
-            .left {
-              bottom: 4rem;
-            }
-          }
-        }
-        #card-2 {
-          max-width: 100%;
-          .content {
-            height: 100%;
-            padding-top: 0;
-            .background-image {
-              max-width: 100%;
-              overflow: hidden;
-              height: auto;
-              position: relative;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              z-index: auto;
-              img {
-                object-fit: cover;
-                width: 100vw;
-              }
-            }
-            .introText {
-              background-color: $navy;
-              margin-top: 0;
-              position: absolute;
-              top: 40%;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              width: 100%;
-              display: block;
-              h1 {
-                color: $white;
-                font-size: 2rem;
-              }
-              p {
-                color: $white;
-              }
-            }
-            .secondText {
-              background-color: transparent;
-              padding: 1rem 1rem 0;
-              p {
-                color: $white;
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-        #card-3 {
-          color: $black;
-          .part {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            height: 100%;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            display: block;
-            .albumExplainer {
-              margin: 0.5rem auto 0.5rem;
-              background-color: $navy;
-              height: 230px;
-              display: flex;
-              align-items: flex-end;
-              justify-content: flex-end;
-              flex-wrap: wrap;
-              p {
-                font-size: 1.15rem;
-                color: $white;
-              }
-              .tweetEmbed {
-                margin: 0;
-                width: 100%;
-                .twitter-tweet {
-                  margin: 0 !important;
-                }
-              }
-            }
-            .albums {
-              margin-right: 0;
-              .album {
-                height: auto;
-                width: 31vw;
-                height: 31vw;
-                margin: 0.15em;
-                vertical-align: middle;
-                padding: 0.5rem;
-                p {
-                  color: $black;
-                  max-width: 100%;
-                  font-size: 0.8rem;
-                  // padding: 0.75rem;
-                }
-              }
-            }
-            &:last-of-type {
-              .albums {
-                .album {
-                  padding: 0.15rem;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	.whitebg {
+		background-color: rgba(250, 250, 250, 0.85);
+		backdrop-filter: blur(2px);
+	}
+	.desktopOnly {
+		display: none;
+	}
+	.well {
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
+		width: 100%;
+	}
+	* {
+		font-size: 14px;
+	}
+	.nowPlaying {
+		display: block;
+		top: 0px !important;
+		left: 0px !important;
+		font-size: 12px !important;
+		border-left: 0px solid $white;
+		text-align: center;
+		width: 100% !important;
+	}
+
+	body {
+		#content {
+			#story {
+				#card-1 {
+					opacity: 1;
+					.headline {
+						margin-bottom: 2rem;
+						h2 {
+							font-size: 1.75rem;
+							letter-spacing: normal;
+							max-width: 275px;
+						}
+						h1 {
+							font-size: 5rem;
+							line-height: 1.6;
+						}
+						h2.byline {
+							font-size: 1.3rem;
+							letter-spacing: normal;
+						}
+						h2.button {
+							position: absolute;
+							bottom: 10%;
+							left: 0;
+							right: 0;
+							font-size: 1.15rem;
+							padding: 10px;
+							max-width: 300px;
+							line-height: 1.5;
+							width: 100%;
+						}
+					}
+					#explainer {
+						display: block;
+						.audioWarning {
+							display: none;
+						}
+						.left,
+						.right {
+							width: 100% !important;
+							position: absolute;
+							height: 100%;
+							bottom: 2rem;
+							.tapExplainer p {
+								width: 100%;
+								hyphens: auto;
+								padding: 0 1rem;
+								left: 0;
+								right: 0;
+								font-size: 1rem;
+							}
+						}
+						.left {
+							bottom: 4rem;
+						}
+					}
+				}
+				#card-2 {
+					max-width: 100%;
+					.content {
+						height: 100%;
+						padding-top: 0;
+						.background-image {
+							max-width: 100%;
+							overflow: hidden;
+							height: auto;
+							position: relative;
+							top: 0;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							z-index: auto;
+							img {
+								object-fit: cover;
+								width: 100vw;
+							}
+						}
+						.introText {
+							background-color: $navy;
+							margin-top: 0;
+							position: absolute;
+							top: 40%;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							display: block;
+							h1 {
+								color: $white;
+								font-size: 2rem;
+							}
+							p {
+								color: $white;
+							}
+						}
+						.secondText {
+							background-color: transparent;
+							padding: 1rem 1rem 0;
+							p {
+								color: $white;
+								font-size: 1rem;
+							}
+						}
+					}
+				}
+				#card-3 {
+					color: $black;
+					.part {
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						height: 100%;
+						flex-wrap: wrap;
+						align-items: flex-start;
+						display: block;
+						.albumExplainer {
+							margin: 1.5rem auto 0.5rem;
+							background-color: $navy;
+							height: 230px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							flex-wrap: wrap;
+							p {
+								font-size: 1.15rem;
+								color: $white;
+							}
+							.tweetEmbed {
+								margin: 0;
+								width: 100%;
+								// max-width: 250px;
+								.twitter-tweet {
+									margin: 0 !important;
+								}
+							}
+						}
+						.albums {
+							margin-right: 0;
+							.album {
+								height: auto;
+								width: 30vw;
+								height: 30vw;
+								margin: 0.15em;
+								vertical-align: middle;
+								padding: 0.5rem;
+								p {
+									color: $black;
+									max-width: 100%;
+									font-size: 0.8rem;
+									// padding: 0.75rem;
+								}
+							}
+						}
+						&:last-of-type {
+							.albums {
+								.album {
+									padding: 0.15rem;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
